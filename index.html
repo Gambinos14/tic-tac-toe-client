@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,6 +12,59 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <nav class="nav-wrapper">
+        <ul class="navigation">
+          <li id="home">HOME</li>
+          <li id="signIn">SIGN IN</li>
+        </ul>
+      </nav>
+      <section class="home-view">
+        <div>
+          <p>Tic Tac Toe</p>
+        </div>
+        <button type="button" class="btn btn-secondary btn-lg">SIGN UP</button>
+      </section>
+
+      <section class="sign-up-view">
+        <h1>Sign Up Form</h1>
+        <form id="sign-up">
+          <input required name="credentials[email]" placeholder="User Email" type="text">
+          <input required name="credentials[password]" placeholder="Password" type="password">
+          <input required name="credentials[password_confirmation]" placeholder="Confirm Password" type="password">
+          <button type="submit" class="btn btn-secondary btn-lg">SIGN UP</button>
+        </form>
+      </section>
+
+      <section class="sign-in-view">
+        <h1>Sign In</h1>
+        <form id="sign-in">
+          <input required name="credentials[email]" placeholder="User Email" type="text">
+          <input required name="credentials[password]" placeholder="Password" type="password">
+          <button type="submit" class="btn btn-secondary btn-lg">SIGN IN</button>
+        </form>
+      </section>
+
+      <section class="game-view">
+
+            <h1>LET'S PLAY</h1>
+            <div class="container">
+              <div class="row">
+                <div class="col-4 box">Text</div>
+                <div class="col-4 box">Text</div>
+                <div class="col-4 box">Text</div>
+              </div>
+              <div class="row">
+                <div class="col-4 box">Text</div>
+                <div class="col-4 box">Text</div>
+                <div class="col-4 box">Text</div>
+              </div>
+              <div class="row">
+                <div class="col-4 box">Text</div>
+                <div class="col-4 box">Text</div>
+                <div class="col-4 box">Text</div>
+              </div>
+            </div>
+
+      </section>
     </body>
 </html>
