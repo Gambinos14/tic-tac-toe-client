@@ -169,18 +169,36 @@ body {
 }
 
 .game-view{
-  display: flex;
+  display: $display-show;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   height: $view-height;
+  > h1 {
+    margin-top: 75px;
+    font-size: 50px;
+  }
   > .container {
-    height: 100%;
-    width: 100%;
-    border: 1px solid black;
+    margin-top: 20px;
+    height: 500px;
+    width: 500px;
     > .row > .box {
+      padding: 10px 0 0 0;
+      margin: 0;
+      height: calc(500px / 3);
       text-align:center;
-      border: 1px solid black;
+      line-height: calc(500px/3);
+      font-size: 150px;
+    }
+    > .row > .sqr1, .sqr2, .sqr4, .sqr5 {
+      border-bottom: 2px solid black;
+      border-right: 2px solid black;
+    }
+    > .row > .sqr3, .sqr6 {
+      border-bottom: 2px solid black;
+    }
+    > .row > .sqr7, .sqr8 {
+      border-right: 2px solid black;
     }
   }
 }
