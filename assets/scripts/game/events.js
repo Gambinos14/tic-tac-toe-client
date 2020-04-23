@@ -1,5 +1,6 @@
 'use strict'
 
+const api = require('./api.js')
 const ui = require('./ui.js')
 const navigation = require('../nav/ui.js')
 
@@ -18,6 +19,7 @@ let gameCounter = 0
 let gameBoard = new Array(9)
 
 const onClick = event => {
+  ui.hideMessages()
 
   if (gameCounter % 2 === 0) {
     currentMove.game.cell.value = 'x'
@@ -75,6 +77,9 @@ const onRestart = event => {
   currentMove.game.cell.value = null
   currentMove.game.cell.index = null
   navigation.resetBoard()
+  api.startGame()
+  .then(ui.gameStartSuccess)
+  .catch(ui.gameStartFailure)
 }
 
 module.exports = {

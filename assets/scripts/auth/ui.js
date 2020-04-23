@@ -2,8 +2,11 @@
 
 const store = require('../store.js')
 const navUi = require('../nav/ui.js')
+const gameApi = require('../game/api.js')
+const gameUi = require('../game/ui.js')
 
 const signUpSuccess = apiResponse => {
+  $('#sign-up').trigger('reset')
   navUi.displaySignIn()
   console.log(apiResponse)
 }
@@ -19,7 +22,9 @@ const signInSuccess = apiResponse => {
   navUi.displayGame()
   store.user = apiResponse.user
   $('#sign-in').trigger('reset')
-  console.log(store)
+  gameApi.startGame()
+    .then(gameUi.gameStartSuccess)
+    .catch(gameUi.gameStartFailure)
 }
 
 const signInFailed = apiResponse => {
