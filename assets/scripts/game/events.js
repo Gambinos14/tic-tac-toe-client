@@ -2,35 +2,43 @@
 
 const ui = require('./ui.js')
 
+// currentMove
+const currentMove = {
+  game: {
+    cell: {
+      index: null,
+      value: null,
+    },
+    over: false
+  }
+}
+
 let gameCounter = 0
 let gameBoard = new Array(9)
 
 const onClick = event => {
 
-  let gamePiece = null;
   if (gameCounter % 2 === 0) {
-    gamePiece = 'X'
+    currentMove.game.cell.value = 'x'
   } else {
-    gamePiece = "O"
+    currentMove.game.cell.value = "o"
   }
 
   if (gameCounter < gameBoard.length) {
     gameCounter++
   } else {
-    const gameOver = 'Game Over'
-    $('#game-message').html(gameOver)
+    ui.onGameOver()
     return
   }
 
   const boxNumber = parseInt($(event.target).data('box-num'))
   if (!gameBoard[boxNumber]) {
-    const gamePieceLower = gamePiece.toLowerCase()
-    gameBoard[boxNumber] = gamePieceLower
+    gameBoard[boxNumber] = currentMove.game.cell.value
   } else {
     return
   }
 
-  $(event.target).html(gamePiece)
+  ui.placeGamePiece(event.target, currentMove.game.cell.value)
 
   if ((gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[2] !== undefined) ||
     (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[5] !== undefined) ||
@@ -40,8 +48,8 @@ const onClick = event => {
     (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[8] !== undefined) ||
     (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[8] !== undefined) ||
     (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[6] !== undefined)) {
-    const winner = gamePiece
-    $('#game-message').html(`Winner is ${gamePiece}`)
+    const winner = currentMove.game.cell.value
+    ui.announceWinner(winner)
     gameCounter = 9
   } else if (gameCounter === 9 && (!((gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[2] !== undefined) ||
     (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[5] !== undefined) ||
@@ -51,10 +59,10 @@ const onClick = event => {
     (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[8] !== undefined) ||
     (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[8] !== undefined) ||
     (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[6] !== undefined)))) {
-    $('#game-message').html("It's a Tie!")
-    }
+    ui.onTie()
+  }
 
-  console.log(gameBoard)
+  console.log(currentMove)
 }
 
 module.exports = {
