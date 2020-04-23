@@ -1,6 +1,7 @@
 'use strict'
 
 const ui = require('./ui.js')
+const navigation = require('../nav/ui.js')
 
 // currentMove
 const currentMove = {
@@ -24,17 +25,18 @@ const onClick = event => {
     currentMove.game.cell.value = "o"
   }
 
+  const boxNumber = parseInt($(event.target).data('box-num'))
+  if (!gameBoard[boxNumber]) {
+    gameBoard[boxNumber] = currentMove.game.cell.value
+    currentMove.game.cell.index = boxNumber
+  } else {
+    return
+  }
+
   if (gameCounter < gameBoard.length) {
     gameCounter++
   } else {
     ui.onGameOver()
-    return
-  }
-
-  const boxNumber = parseInt($(event.target).data('box-num'))
-  if (!gameBoard[boxNumber]) {
-    gameBoard[boxNumber] = currentMove.game.cell.value
-  } else {
     return
   }
 
@@ -62,9 +64,20 @@ const onClick = event => {
     ui.onTie()
   }
 
-  console.log(currentMove)
+  // console.log(gameBoard)
+  // console.log(currentMove)
+  // console.log(gameCounter)
+}
+
+const onRestart = event => {
+  gameCounter = 0;
+  gameBoard = new Array(9)
+  currentMove.game.cell.value = null
+  currentMove.game.cell.index = null
+  navigation.resetBoard()
 }
 
 module.exports = {
-  onClick
+  onClick,
+  onRestart
 }

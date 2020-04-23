@@ -16,8 +16,13 @@
         <ul class="navigation">
           <li id="home">HOME</li>
           <li id="signIn">SIGN IN</li>
+          <li id="game">GAME</li>
+          <li id="password">CHANGE PASSWORD</li>
+          <li id="signOut">SIGN OUT</li>
         </ul>
       </nav>
+
+      <div id="universal-failure"></div>
       <section class="home-view">
         <div>
           <p>Tic Tac Toe</p>
@@ -33,6 +38,7 @@
           <input required name="credentials[password_confirmation]" placeholder="Confirm Password" type="password">
           <button type="submit" class="btn btn-secondary btn-lg">SIGN UP</button>
         </form>
+        <div id="sign-up-message"></div>
       </section>
 
       <section class="sign-in-view">
@@ -42,6 +48,17 @@
           <input required name="credentials[password]" placeholder="Password" type="password">
           <button type="submit" class="btn btn-secondary btn-lg">SIGN IN</button>
         </form>
+        <div id="sign-in-message"></div>
+      </section>
+
+      <section class="change-password-view">
+        <h1>Change Password</h1>
+        <form id="change-pw">
+          <input required name="passwords[old]" placeholder="Old Password" type="password">
+          <input required name="passwords[new]" placeholder="New Password" type="password">
+          <button type="submit" class="btn btn-secondary btn-lg">CHANGE</button>
+        </form>
+        <div id="change-password-message"></div>
       </section>
 
       <section class="game-view">
@@ -64,6 +81,7 @@
                 <div data-box-num="8" class="col-4 box sqr9"></div>
               </div>
             </div>
+            <button type="button" id="restart" class="btn btn-secondary btn-lg">RESTART GAME</button>
 
       </section>
     </body>
