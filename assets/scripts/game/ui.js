@@ -1,12 +1,6 @@
 'use strict'
 const store = require('../store.js')
 
-const onGameOver = () => {
-  const gameOver = 'Game Over'
-  $('#game-message').show()
-  $('#game-message').html(gameOver)
-}
-
 const announceWinner = winner => {
   const upperCaseWinner = winner.toUpperCase()
   $('#game-message').show()
@@ -24,33 +18,42 @@ const onTie = () => {
 }
 
 const gameStartSuccess = apiResponse => {
-  $('#game-message').show()
-  $('#game-message').removeClass()
-  $('#game-message').addClass('success')
-  $('#game-message').text('Game has begun!')
+  $('#game-start-message').show()
+  $('#game-start-message').removeClass()
+  $('#game-start-message').addClass('success')
+  $('#game-start-message').text('Game has begun!')
   store.game = apiResponse.game
   console.log('ui.gameStartSuccess ran', apiResponse)
   console.log('Store: ', store)
 }
 
 const gameStartFailure = apiResponse => {
-  $('#game-message').show()
-  $('#game-message').removeClass()
-  $('#game-message').addClass('failure')
-  $('#game-message').text('Issue with Game Engine!')
+  $('#game-start-message').show()
+  $('#game-start-message').removeClass()
+  $('#game-start-message').addClass('failure')
+  $('#game-start-message').text('Issue with Game Engine!')
   console.log('ui.gameStartFailure ran')
 }
 
-const hideMessages = () => {
-  $('#game-message').hide()
+const hideStartMessage = () => {
+  $('#game-start-message').hide()
+}
+
+const updateGameComplete = apiResponse => {
+  console.log('ui.updateGameComplete ran', apiResponse)
+}
+
+const updateGameFailed = apiResponse => {
+  console.log('ui.updateGameFailed ran', apiResponse)
 }
 
 module.exports = {
-  onGameOver,
   announceWinner,
   placeGamePiece,
   onTie,
   gameStartSuccess,
   gameStartFailure,
-  hideMessages
+  hideStartMessage,
+  updateGameComplete,
+  updateGameFailed
 }

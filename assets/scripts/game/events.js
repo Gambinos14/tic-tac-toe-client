@@ -19,7 +19,7 @@ let gameCounter = 0
 let gameBoard = new Array(9)
 
 const onClick = event => {
-  ui.hideMessages()
+  ui.hideStartMessage()
 
   if (gameCounter % 2 === 0) {
     currentMove.game.cell.value = 'x'
@@ -38,11 +38,14 @@ const onClick = event => {
   if (gameCounter < gameBoard.length) {
     gameCounter++
   } else {
-    ui.onGameOver()
     return
   }
 
   ui.placeGamePiece(event.target, currentMove.game.cell.value)
+
+  api.updateGame(currentMove)
+    .then(ui.updateGameComplete)
+    .catch(ui.updateGameFailed)
 
   if ((gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[2] !== undefined) ||
     (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[5] !== undefined) ||
@@ -67,7 +70,7 @@ const onClick = event => {
   }
 
   // console.log(gameBoard)
-  // console.log(currentMove)
+  console.log(currentMove)
   // console.log(gameCounter)
 }
 
