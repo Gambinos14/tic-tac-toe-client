@@ -21,4 +21,7 @@ $(() => {
   $('#sign-in').on('submit', authEvents.onSignIn)
   $('#change-pw').on('submit', authEvents.onChangePassword)
   $('#signOut').on('click', authEvents.onSignOut)
+  $('#game-by-id').on('click', navUi.displayIdForm)
+  $('#game-id-data').on('submit', gameEvents.getGameById)
+  $('#all-games').on('click', gameEvents.allGames)
 })

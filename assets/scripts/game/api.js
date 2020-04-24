@@ -25,7 +25,29 @@ const updateGame = data => {
   })
 }
 
+const getGame = data => {
+  return $.ajax({
+    url: config.apiUrl + `/games/${data}`,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
+const getAllGames = () => {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   startGame,
-  updateGame
+  updateGame,
+  getGame,
+  getAllGames
 }

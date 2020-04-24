@@ -6,6 +6,7 @@ const displayHome = event => {
   $('.game-view').css('display', 'none')
   $('.home-view').css('display', 'flex')
   $('.change-password-view').css('display', 'none')
+  $('#game-id-data').css('display','none')
 }
 
 const displaySignIn = event => {
@@ -34,6 +35,7 @@ const displayGame = event => {
   $('#signOut').css('display', 'list-item')
   $('#game').css('display', 'list-item')
   $('#signIn').css('display', 'none')
+  $('#game-id-data').css('display','none')
 }
 
 const displayChangePassword = event => {
@@ -42,12 +44,18 @@ const displayChangePassword = event => {
   $('.game-view').css('display', 'none')
   $('.home-view').css('display', 'none')
   $('.change-password-view').css('display', 'flex')
+  $('#game-id-data').css('display','none')
 }
 
 const resetBoard = () => {
   $('.box').html("")
   $('game-message').html("")
   $('#game-message').css('display', 'none')
+  $('#game-id-data').css('display','none')
+}
+
+const displayIdForm = () => {
+  $('#game-id-data').css('display','flex')
 }
 
 module.exports = {
@@ -56,5 +64,6 @@ module.exports = {
   displaySignUp,
   displayGame,
   displayChangePassword,
-  resetBoard
+  resetBoard,
+  displayIdForm
 }

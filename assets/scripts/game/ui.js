@@ -21,7 +21,8 @@ const gameStartSuccess = apiResponse => {
   $('#game-start-message').show()
   $('#game-start-message').removeClass()
   $('#game-start-message').addClass('success')
-  $('#game-start-message').text('Game has begun!')
+  $('#game-start-message').text(`Game has begun! The game current game ID is: ${apiResponse.game.id}`)
+  store.game = null
   store.game = apiResponse.game
   console.log('ui.gameStartSuccess ran', apiResponse)
   console.log('Store: ', store)
@@ -47,6 +48,26 @@ const updateGameFailed = apiResponse => {
   console.log('ui.updateGameFailed ran', apiResponse)
 }
 
+const getGameSuccess = apiResponse => {
+  console.log('getGameSuccess ran', apiResponse)
+  $('#game-id-data').trigger('reset')
+  $('#game-id-data').hide()
+}
+
+const getGameFailed = apiResponse => {
+  console.log('getGameFailed ran', apiResponse)
+  $('#game-id-data').trigger('reset')
+  $('#game-id-data').hide()
+}
+
+const allGamesSuccess = apiResponse => {
+  console.log('allGamesSuccess ran', apiResponse)
+}
+
+const allGamesFailed = apiResponse => {
+  console.log('allGamesFailed ran', apiResponse)
+}
+
 module.exports = {
   announceWinner,
   placeGamePiece,
@@ -55,5 +76,9 @@ module.exports = {
   gameStartFailure,
   hideStartMessage,
   updateGameComplete,
-  updateGameFailed
+  updateGameFailed,
+  getGameSuccess,
+  getGameFailed,
+  allGamesFailed,
+  allGamesSuccess
 }

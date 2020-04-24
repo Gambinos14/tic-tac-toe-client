@@ -82,7 +82,16 @@
                 <div data-box-num="8" class="col-4 box sqr9"></div>
               </div>
             </div>
-            <button type="button" id="restart" class="btn btn-secondary btn-lg">RESTART GAME</button>
+            <div class="button-wrapper">
+              <button type="button" id="restart" class="btn btn-secondary btn-lg">RESTART GAME</button>
+              <button type="button" id="game-by-id" class="btn btn-secondary btn-lg"><a href="#game-id-data">GET GAME BY ID</a></button>
+              <button type="button" id="all-games" class="btn btn-secondary btn-lg">GET ALL GAMES</button>
+            </div>
+
+            <form id="game-id-data">
+              <input required id="game-id" placeholder="Game ID #" type="text">
+              <button type="submit" class="btn btn-secondary btn-lg">GET GAME</button>
+            </form>
 
       </section>
     </body>

@@ -40,6 +40,7 @@ const signOutSuccess = apiResponse => {
   $('#signOut').css('display', 'none')
   $('#game').css('display', 'none')
   $('#signIn').css('display', 'list-item')
+  store.game = null
   store.user = null
   console.log('ui.signOutSuccess ran', store)
 }

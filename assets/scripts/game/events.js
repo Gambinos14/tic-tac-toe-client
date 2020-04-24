@@ -3,6 +3,7 @@
 const api = require('./api.js')
 const ui = require('./ui.js')
 const navigation = require('../nav/ui.js')
+const getFormFields = require('../../../lib/get-form-fields.js')
 
 // currentMove
 const currentMove = {
@@ -85,7 +86,23 @@ const onRestart = event => {
   .catch(ui.gameStartFailure)
 }
 
+const getGameById = event => {
+  event.preventDefault()
+  const formData = $('#game-id').val()
+  api.getGame(formData)
+    .then(ui.getGameSuccess)
+    .catch(ui.getGameFailed)
+}
+
+const allGames = event => {
+  api.getAllGames()
+    .then(ui.allGamesSuccess)
+    .catch(ui.allGamesFailed)
+}
+
 module.exports = {
   onClick,
-  onRestart
+  onRestart,
+  getGameById,
+  allGames
 }
