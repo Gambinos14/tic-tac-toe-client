@@ -3960,8 +3960,20 @@ var startGame = function startGame() {
   });
 };
 
+var updateGame = function updateGame(data) {
+  return $.ajax({
+    url: config.apiUrl + ('/games/' + store.game.id),
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: data
+  });
+};
+
 module.exports = {
-  startGame: startGame
+  startGame: startGame,
+  updateGame: updateGame
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
@@ -3997,12 +4009,6 @@ module.exports = {
 
 var store = __webpack_require__(67);
 
-var onGameOver = function onGameOver() {
-  var gameOver = 'Game Over';
-  $('#game-message').show();
-  $('#game-message').html(gameOver);
-};
-
 var announceWinner = function announceWinner(winner) {
   var upperCaseWinner = winner.toUpperCase();
   $('#game-message').show();
@@ -4020,35 +4026,44 @@ var onTie = function onTie() {
 };
 
 var gameStartSuccess = function gameStartSuccess(apiResponse) {
-  $('#game-message').show();
-  $('#game-message').removeClass();
-  $('#game-message').addClass('success');
-  $('#game-message').text('Game has begun!');
+  $('#game-start-message').show();
+  $('#game-start-message').removeClass();
+  $('#game-start-message').addClass('success');
+  $('#game-start-message').text('Game has begun!');
   store.game = apiResponse.game;
   console.log('ui.gameStartSuccess ran', apiResponse);
   console.log('Store: ', store);
 };
 
 var gameStartFailure = function gameStartFailure(apiResponse) {
-  $('#game-message').show();
-  $('#game-message').removeClass();
-  $('#game-message').addClass('failure');
-  $('#game-message').text('Issue with Game Engine!');
+  $('#game-start-message').show();
+  $('#game-start-message').removeClass();
+  $('#game-start-message').addClass('failure');
+  $('#game-start-message').text('Issue with Game Engine!');
   console.log('ui.gameStartFailure ran');
 };
 
-var hideMessages = function hideMessages() {
-  $('#game-message').hide();
+var hideStartMessage = function hideStartMessage() {
+  $('#game-start-message').hide();
+};
+
+var updateGameComplete = function updateGameComplete(apiResponse) {
+  console.log('ui.updateGameComplete ran', apiResponse);
+};
+
+var updateGameFailed = function updateGameFailed(apiResponse) {
+  console.log('ui.updateGameFailed ran', apiResponse);
 };
 
 module.exports = {
-  onGameOver: onGameOver,
   announceWinner: announceWinner,
   placeGamePiece: placeGamePiece,
   onTie: onTie,
   gameStartSuccess: gameStartSuccess,
   gameStartFailure: gameStartFailure,
-  hideMessages: hideMessages
+  hideStartMessage: hideStartMessage,
+  updateGameComplete: updateGameComplete,
+  updateGameFailed: updateGameFailed
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
@@ -16791,9 +16806,6 @@ module.exports = function (regExp, replace) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-// $display-hide: none;
-// $display-show: flex;
-
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
 
@@ -16845,7 +16857,7 @@ var gameCounter = 0;
 var gameBoard = new Array(9);
 
 var onClick = function onClick(event) {
-  ui.hideMessages();
+  ui.hideStartMessage();
 
   if (gameCounter % 2 === 0) {
     currentMove.game.cell.value = 'x';
@@ -16864,11 +16876,12 @@ var onClick = function onClick(event) {
   if (gameCounter < gameBoard.length) {
     gameCounter++;
   } else {
-    ui.onGameOver();
     return;
   }
 
   ui.placeGamePiece(event.target, currentMove.game.cell.value);
+
+  api.updateGame(currentMove).then(ui.updateGameComplete).catch(ui.updateGameFailed);
 
   if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[2] !== undefined || gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[5] !== undefined || gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8] && gameBoard[8] !== undefined || gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[6] !== undefined || gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7] && gameBoard[7] !== undefined || gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[8] !== undefined || gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[8] !== undefined || gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[6] !== undefined) {
     var winner = currentMove.game.cell.value;
@@ -16879,7 +16892,7 @@ var onClick = function onClick(event) {
   }
 
   // console.log(gameBoard)
-  // console.log(currentMove)
+  console.log(currentMove);
   // console.log(gameCounter)
 };
 
