@@ -8,14 +8,6 @@ $view-height: 750px;
 $display-hide: none;
 $display-show: flex;
 
-a{
-  text-decoration: none;
-  color: black;
-  &:hover{
-    text-decoration: none;
-    color: white;
-  }
-}
 
 body {
   background-color:$main-site-color;
@@ -238,42 +230,52 @@ body {
     height: 500px;
     width: 500px;
     > .row > .box {
-      padding: 10px 0 0 0;
-      margin: 0;
-      height: calc(500px/3);
-      text-align:center;
-      line-height: calc(500px/3);
-      font-size: 150px;
-    }
-    > .row > .sqr1, .sqr2, .sqr4, .sqr5 {
       border-bottom: 2px solid black;
       border-right: 2px solid black;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      height: calc(100% / 3);
+      width: calc(100%/ 3);
+      font-size: 15vh;
+      &:nth-child(3n){
+        border-right: 0;
+      }
+      &:nth-last-child(-1n + 3){
+        border-bottom: 0;
+      }
     }
-    > .row > .sqr3, .sqr6 {
-      border-bottom: 2px solid black;
+    > .row > .game-box {
+      background-color: $main-site-color;
+      color: white;
+      user-select:none;
+      text-shadow: 2px 2px rgba(0,0,0,0.25);
+      &:hover{
+        background-color: $alt-color;
+      }
     }
-    > .row > .sqr7, .sqr8 {
-      border-right: 2px solid black;
+    > .board {
+      background: url('https://picsum.photos/400') no-repeat center center;
+      background-size: cover;
     }
   }
-    > .button-wrapper {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin: 30px 0px;
-      width: 50%;
-      > button {
-       display: inline;
-       width: 20%;
-       height: 100%;
-       border: 2px solid black;
-       background-color: white;
-       color: black;
-       font-size: 12px;
-       font-weight: 600;
-       &:hover {
-       background-color: $alt-color;
-       color: white;
+  > .button-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px 0px;
+    width: 50%;
+    > button {
+      width: 20%;
+      height: 100%;
+      border: 2px solid black;
+      background-color: white;
+      color: black;
+      font-size: 12px;
+      font-weight: 600;
+      &:hover {
+      background-color: $alt-color;
+      color: white;
       }
     }
   }
@@ -312,7 +314,6 @@ body {
   }
 }
 
-
 #password{
   display: $display-hide;
   font-size: 11px;
@@ -335,18 +336,12 @@ body {
   color: green;
 }
 
-@keyframes blink {
-  from {color: green;}
-  to {color: $alt-color;}
-}
-
 .bannerMessage{
   font-weight: 600;
   margin: 10px 0px;
-  animation-name: blink;
 }
 
-.game-id-display{
-  display: none;
+.game-id-display {
+  display:none;
   margin-bottom: 30px;
 }

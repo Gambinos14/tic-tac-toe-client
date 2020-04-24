@@ -9,12 +9,15 @@ const announceWinner = winner => {
 
 const placeGamePiece = (position, player) => {
   const upperCasePlayer = player.toUpperCase()
-  $(position).html(upperCasePlayer)
+  $(position).css('background', 'transparent').html(upperCasePlayer)
   const displayStatus = $('#game-message').css('display')
   console.log('Display status: ' + displayStatus)
   if (displayStatus === 'block') {
     $('#game-message').hide()
   }
+  $('.game-id-display').css('display', 'none')
+  $('#game-id-data').css('display', 'none')
+
 }
 
 const onTie = () => {
@@ -23,6 +26,7 @@ const onTie = () => {
 }
 
 const gameStartSuccess = apiResponse => {
+  $('.game-box').css('background', '#f7faf7')
   $('#game-start-message').show()
   $('#game-start-message').removeClass()
   $('#game-start-message').addClass('success')
@@ -88,7 +92,11 @@ const allGamesSuccess = apiResponse => {
   $('#game-message').show()
   $('#game-message').removeClass()
   $('#game-message').addClass('bannerMessage')
-  $('#game-message').text(`YOU'VE PLAYED ${apiResponse.games.length} GAMES`)
+  if (apiResponse.games.length === 1) {
+    $('#game-message').text('WELCOME, THIS IS YOUR FIRST GAME')
+  } else {
+    $('#game-message').text(`YOU'VE PLAYED ${apiResponse.games.length} GAMES`)
+  }
   console.log('allGamesSuccess ran', apiResponse)
 }
 

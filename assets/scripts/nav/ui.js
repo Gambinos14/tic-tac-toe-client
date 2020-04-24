@@ -60,6 +60,7 @@ const resetBoard = () => {
 
 const displayIdForm = () => {
   $('#game-id-data').css('display','flex')
+  window.scrollTo(0, 1000);
 }
 
 module.exports = {
