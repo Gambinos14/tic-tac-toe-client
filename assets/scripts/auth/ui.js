@@ -20,6 +20,7 @@ const signUpFailed = apiResponse => {
 
 const signInSuccess = apiResponse => {
   navUi.displayGame()
+  $('#nav-btn').hide()
   store.user = apiResponse.user
   $('#sign-in').trigger('reset')
   gameApi.startGame()
@@ -40,6 +41,7 @@ const signOutSuccess = apiResponse => {
   $('#signOut').css('display', 'none')
   $('#game').css('display', 'none')
   $('#signIn').css('display', 'list-item')
+  $('#nav-btn').show()
   store.game = null
   store.user = null
   console.log('ui.signOutSuccess ran', store)

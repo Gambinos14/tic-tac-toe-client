@@ -48,6 +48,7 @@ const onClick = event => {
     .then(ui.updateGameComplete)
     .catch(ui.updateGameFailed)
 
+
   if ((gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[2] !== undefined) ||
     (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[5] !== undefined) ||
     (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8] && gameBoard[8] !== undefined) ||

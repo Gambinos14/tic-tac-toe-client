@@ -10,7 +10,7 @@ const navUi = require('./nav/ui.js')
 const authEvents = require('./auth/events.js')
 
 $(() => {
-  $('.col-4').on('click', gameEvents.onClick)
+  $('.game-box').on('click', gameEvents.onClick)
   $('#home').on('click', navUi.displayHome)
   $('#signIn').on('click', navUi.displaySignIn)
   $('#nav-btn').on('click', navUi.displaySignUp)
