@@ -10,18 +10,26 @@ const navUi = require('./nav/ui.js')
 const authEvents = require('./auth/events.js')
 
 $(() => {
-  $('.game-box').on('click', gameEvents.onClick)
+  //nav event listeners
   $('#home').on('click', navUi.displayHome)
   $('#signIn').on('click', navUi.displaySignIn)
   $('#nav-btn').on('click', navUi.displaySignUp)
   $('#password').on('click', navUi.displayChangePassword)
   $('#game').on('click', navUi.displayGame)
-  $('#restart').on('click', gameEvents.onRestart)
+
+  //auth event listeners
   $('#sign-up').on('submit', authEvents.onSignUp)
   $('#sign-in').on('submit', authEvents.onSignIn)
   $('#change-pw').on('submit', authEvents.onChangePassword)
   $('#signOut').on('click', authEvents.onSignOut)
-  $('#game-by-id').on('click', navUi.displayIdForm)
+
+  //game event listeners
+  $('.game-box').on('click', gameEvents.onClick)
+  $('#restart').on('click', gameEvents.onRestart)
+  $('#game-by-id').on('click', () => {
+    $('#game-id-data').css('display','flex')
+    window.scrollTo(0, 1000);
+  })
   $('#game-id-data').on('submit', gameEvents.getGameById)
   $('#all-games').on('click', gameEvents.allGames)
 })

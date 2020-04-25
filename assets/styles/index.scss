@@ -338,10 +338,10 @@ body {
 
 .bannerMessage{
   font-weight: 600;
-  margin: 10px 0px;
+  margin-top: 10px;
 }
 
 .game-id-display {
-  display:none;
+  display: $display-hide;
   margin-bottom: 30px;
 }

@@ -3,72 +3,69 @@ const store = require('../store.js')
 
 const announceWinner = winner => {
   const upperCaseWinner = winner.toUpperCase()
+  $('#game-message').removeClass()
+  $('#game-message').addClass('bannerMessage')
   $('#game-message').show()
   $('#game-message').html(`Winner is ${upperCaseWinner}`)
 }
 
+const resetBoard = () => {
+  $('.game-box').html("")
+  $('.game-box').css('background', '#f7faf7')
+  $('#game-message').hide()
+  $('#game-id-data').hide()
+  $('.game-id-display').hide()
+}
+
 const placeGamePiece = (position, player) => {
+  $('#game-message').hide()
+  $('.game-id-display').hide()
+  $('#game-id-data').hide()
   const upperCasePlayer = player.toUpperCase()
   $(position).css('background', 'transparent').html(upperCasePlayer)
-  const displayStatus = $('#game-message').css('display')
-  console.log('Display status: ' + displayStatus)
-  if (displayStatus === 'block') {
-    $('#game-message').hide()
-  }
-  $('.game-id-display').css('display', 'none')
-  $('#game-id-data').css('display', 'none')
-
 }
 
 const onTie = () => {
+  $('#game-message').removeClass()
+  $('#game-message').addClass('bannerMessage')
   $('#game-message').show()
   $('#game-message').html("It's a Tie!")
 }
 
 const gameStartSuccess = apiResponse => {
-  $('.game-box').css('background', '#f7faf7')
-  $('#game-start-message').show()
-  $('#game-start-message').removeClass()
-  $('#game-start-message').addClass('success')
-  $('#game-start-message').text(`Game has begun! The current game ID is: ${apiResponse.game.id}`)
+  $('#game-message').removeClass()
+  $('#game-message').addClass('success')
+  $('#game-message').text(`Game has begun! The current game ID is: ${apiResponse.game.id}`)
+  $('#game-message').show()
   store.game = null
   store.game = apiResponse.game
   console.log('ui.gameStartSuccess ran', apiResponse)
-  console.log('Store: ', store)
 }
 
 const gameStartFailure = apiResponse => {
-  $('#game-start-message').show()
-  $('#game-start-message').removeClass()
-  $('#game-start-message').addClass('failure')
-  $('#game-start-message').text('Issue with Game Engine!')
+  $('#game-message').removeClass()
+  $('#game-message').addClass('failure')
+  $('#game-message').text('Issue with Game Engine!')
+  $('#game-message').show()
   console.log('ui.gameStartFailure ran')
 }
-
-const hideStartMessage = () => {
-  $('#game-start-message').hide()
-}
-
 
 const updateGameComplete = apiResponse => {
   console.log('ui.updateGameComplete ran', apiResponse)
 }
 
 const updateGameFailed = apiResponse => {
-  $('#game-move-status').show()
-  $('#game-move-status').removeClass()
-  $('#game-move-status').addClass('failure')
-  $('#game-move-status').text('Issue Logging The Last Move...')
+  $('#game-message').removeClass()
+  $('#game-message').addClass('failure')
+  $('#game-message').text('Issue Sending The Last Move...')
+  $('#game-message').show()
   console.log('ui.updateGameFailed ran', apiResponse)
 }
 
 const getGameSuccess = apiResponse => {
-  console.log('getGameSuccess ran', apiResponse)
-  $('#game-id-data').trigger('reset')
-  $('#game-id-data').hide()
   const gameCells = apiResponse.game.cells
-  const boardChildren = $('.apiReturnBoard').children()
-  const boardArray = Object.values(boardChildren)
+  const childrenObj = $('.apiReturnBoard').children()
+  const boardArray = Object.values(childrenObj)
   boardArray.forEach((element, index) => {
     if (gameCells[index]) {
       const toUpper = gameCells[index].toUpperCase()
@@ -77,19 +74,24 @@ const getGameSuccess = apiResponse => {
       $(boardArray[index]).text(gameCells[index])
     }
   })
-
+  $('#game-id-data').trigger('reset')
+  $('#game-id-data').hide()
   $('.game-id-display').show()
+  console.log('getGameSuccess ran', apiResponse)
 }
 
 const getGameFailed = apiResponse => {
-  console.log('getGameFailed ran', apiResponse)
+  $('#game-message').removeClass()
+  $('#game-message').addClass('failure')
+  $('#game-message').text('PLEASE TRY AGAIN')
+  $('#game-message').show()
   $('#game-id-data').trigger('reset')
   $('#game-id-data').hide()
+  console.log('getGameFailed ran', apiResponse)
 }
 
 const allGamesSuccess = apiResponse => {
-  $('.game-id-display').css('display', 'none')
-  $('#game-message').show()
+  $('.game-id-display').hide()
   $('#game-message').removeClass()
   $('#game-message').addClass('bannerMessage')
   if (apiResponse.games.length === 1) {
@@ -97,15 +99,16 @@ const allGamesSuccess = apiResponse => {
   } else {
     $('#game-message').text(`YOU'VE PLAYED ${apiResponse.games.length} GAMES`)
   }
+  $('#game-message').show()
   console.log('allGamesSuccess ran', apiResponse)
 }
 
 const allGamesFailed = apiResponse => {
-  $('.game-id-display').css('display', 'none')
-  $('#game-message').show()
+  $('.game-id-display').hide()
   $('#game-message').removeClass()
   $('#game-message').addClass('failure')
   $('#game-message').text('ISSUE GETTING PREVIOUS GAME DATA')
+  $('#game-message').show()
   console.log('allGamesFailed ran', apiResponse)
 }
 
@@ -115,11 +118,11 @@ module.exports = {
   onTie,
   gameStartSuccess,
   gameStartFailure,
-  hideStartMessage,
   updateGameComplete,
   updateGameFailed,
   getGameSuccess,
   getGameFailed,
   allGamesFailed,
   allGamesSuccess,
+  resetBoard
 }

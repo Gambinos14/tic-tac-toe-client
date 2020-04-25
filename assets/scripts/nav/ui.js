@@ -1,66 +1,78 @@
 'use strict'
 
-const displayHome = event => {
-  $('.sign-up-view').css('display', 'none')
-  $('.sign-in-view').css('display', 'none')
-  $('.game-view').css('display', 'none')
-  $('.home-view').css('display', 'flex')
-  $('.change-password-view').css('display', 'none')
-  $('#game-id-data').css('display','none')
-  $('.game-id-display').css('display','none')
+const displayHome = () => {
+  $('.sign-up-view').hide()
+  $('.sign-in-view').hide()
+  $('.game-view').hide()
+  $('.home-view').show()
+  $('.change-password-view').hide()
+
+  $('#sign-up-message').hide()
+  $('#sign-in-message').hide()
+  $('#change-password-message').hide()
+  $('#sign-up-message').hide()
+  $('#game-message').hide()
+  $('#universal-failure').hide()
 }
 
-const displaySignIn = event => {
-  $('.sign-up-view').css('display', 'none')
+const displaySignIn = () => {
+  $('.sign-up-view').hide()
   $('.sign-in-view').css('display', 'flex')
-  $('.game-view').css('display', 'none')
-  $('.home-view').css('display', 'none')
-  $('.change-password-view').css('display', 'none')
+  $('.game-view').hide()
+  $('.home-view').hide()
+  $('.change-password-view').hide()
+
+  $('#sign-up-message').hide()
+  $('#sign-in-message').hide()
+  $('#change-password-message').hide()
+  $('#sign-up-message').hide()
+  $('#game-message').hide()
+  $('#universal-failure').hide()
 }
 
-const displaySignUp = event => {
+const displaySignUp = () => {
   $('.sign-up-view').css('display', 'flex')
-  $('.sign-in-view').css('display', 'none')
-  $('.game-view').css('display', 'none')
-  $('.home-view').css('display', 'none')
-  $('.change-password-view').css('display', 'none')
+  $('.sign-in-view').hide()
+  $('.game-view').hide()
+  $('.home-view').hide()
+  $('.change-password-view').hide()
+
+  $('#sign-up-message').hide()
+  $('#sign-in-message').hide()
+  $('#change-password-message').hide()
+  $('#sign-up-message').hide()
+  $('#game-message').hide()
+  $('#universal-failure').hide()
 }
 
-const displayGame = event => {
-  $('.sign-up-view').css('display', 'none')
-  $('.sign-in-view').css('display', 'none')
+const displayGame = () => {
+  $('.sign-up-view').hide()
+  $('.sign-in-view').hide()
   $('.game-view').css('display', 'flex')
-  $('.home-view').css('display', 'none')
-  $('.change-password-view').css('display', 'none')
-  $('#password').css('display','list-item')
-  $('#signOut').css('display', 'list-item')
-  $('#game').css('display', 'list-item')
-  $('#signIn').css('display', 'none')
-  $('#game-id-data').css('display','none')
-  $('.game-id-display').css('display','none')
+  $('.home-view').hide()
+  $('.change-password-view').hide()
+
+  $('#sign-up-message').hide()
+  $('#sign-in-message').hide()
+  $('#change-password-message').hide()
+  $('#sign-up-message').hide()
+  $('#game-message').hide()
+  $('#universal-failure').hide()
 }
 
-const displayChangePassword = event => {
-  $('.sign-up-view').css('display', 'none')
-  $('.sign-in-view').css('display', 'none')
-  $('.game-view').css('display', 'none')
-  $('.home-view').css('display', 'none')
+const displayChangePassword = () => {
+  $('.sign-up-view').hide()
+  $('.sign-in-view').hide()
+  $('.game-view').hide()
+  $('.home-view').hide()
   $('.change-password-view').css('display', 'flex')
-  $('#game-id-data').css('display','none')
-  $('.game-id-display').css('display','none')
-}
 
-const resetBoard = () => {
-  $('.box').html("")
-  $('game-message').html("")
-  $('#game-message').css('display', 'none')
-  $('#game-id-data').css('display','none')
-  $('.game-id-display').css('display','none')
-}
-
-const displayIdForm = () => {
-  $('#game-id-data').css('display','flex')
-  window.scrollTo(0, 1000);
+  $('#sign-up-message').hide()
+  $('#sign-in-message').hide()
+  $('#change-password-message').hide()
+  $('#sign-up-message').hide()
+  $('#game-message').hide()
+  $('#universal-failure').hide()
 }
 
 module.exports = {
@@ -69,6 +81,4 @@ module.exports = {
   displaySignUp,
   displayGame,
   displayChangePassword,
-  resetBoard,
-  displayIdForm
 }

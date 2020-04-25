@@ -6,14 +6,15 @@ const gameApi = require('../game/api.js')
 const gameUi = require('../game/ui.js')
 
 const signUpSuccess = apiResponse => {
-  $('#sign-up').trigger('reset')
   navUi.displaySignIn()
+  $('#sign-up').trigger('reset')
   console.log(apiResponse)
 }
 
 const signUpFailed = apiResponse => {
   $('#sign-up-message').addClass('failure')
   $('#sign-up-message').text('Sign Up Failed. Please Try Again!')
+  $('#sign-up-message').show()
   $('#sign-up').trigger('reset')
   console.log("Issue with Sign Up", apiResponse)
 }
@@ -21,8 +22,13 @@ const signUpFailed = apiResponse => {
 const signInSuccess = apiResponse => {
   navUi.displayGame()
   $('#nav-btn').hide()
-  store.user = apiResponse.user
+  $('#signIn').hide()
+  $('#password').css('display', 'list-item')
+  $('#signOut').css('display', 'list-item')
+  $('#game').css('display', 'list-item')
   $('#sign-in').trigger('reset')
+
+  store.user = apiResponse.user
   gameApi.startGame()
     .then(gameUi.gameStartSuccess)
     .catch(gameUi.gameStartFailure)
@@ -31,20 +37,20 @@ const signInSuccess = apiResponse => {
 const signInFailed = apiResponse => {
   $('#sign-in-message').addClass('failure')
   $('#sign-in-message').text('Sign In Failed. Please Try Again!')
+  $('#sign-in-message').show()
   $('#sign-in').trigger('reset')
   console.log("Issue with Sign In", apiResponse)
 }
 
 const signOutSuccess = apiResponse => {
   navUi.displayHome()
-  $('#password').css('display','none')
-  $('#signOut').css('display', 'none')
-  $('#game').css('display', 'none')
+  $('#password').hide()
+  $('#signOut').hide()
+  $('#game').hide()
   $('#signIn').css('display', 'list-item')
   $('#nav-btn').show()
-  store.game = null
   store.user = null
-  console.log('ui.signOutSuccess ran', store)
+  console.log('ui.signOutSuccess ran')
 }
 
 const signOutFailed = apiResponse => {
@@ -58,6 +64,7 @@ const changePasswordSuccess = apiResponse => {
   $('#change-password-message').removeClass()
   $('#change-password-message').addClass('success')
   $('#change-password-message').text('Password Successfully Changed!')
+  $('#change-password-message').show()
   $('#change-pw').trigger('reset')
   console.log('ui.changePasswordSuccess ran')
 }
@@ -66,6 +73,7 @@ const changePasswordFailed = apiResponse => {
   $('#change-password-message').removeClass()
   $('#change-password-message').addClass('failure')
   $('#change-password-message').text('Please Try Again...')
+  $('#change-password-message').show()
   $('#change-pw').trigger('reset')
   console.log('ui.changePasswordFailed ran')
 }
