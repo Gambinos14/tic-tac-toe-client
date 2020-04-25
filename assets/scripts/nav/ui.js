@@ -58,6 +58,9 @@ const displayGame = () => {
   $('#sign-up-message').hide()
   $('#game-message').hide()
   $('#universal-failure').hide()
+
+  $('#game-id-data').hide()
+  $('.game-id-display').hide()
 }
 
 const displayChangePassword = () => {
