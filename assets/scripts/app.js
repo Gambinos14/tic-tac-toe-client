@@ -27,9 +27,11 @@ $(() => {
   $('.game-box').on('click', gameEvents.onClick)
   $('#restart').on('click', gameEvents.onRestart)
   $('#game-by-id').on('click', () => {
+    $('#display-stats').hide()
     $('#game-id-data').css('display','flex')
     window.scrollTo(0, 1000);
   })
   $('#game-id-data').on('submit', gameEvents.getGameById)
   $('#all-games').on('click', gameEvents.allGames)
+  $('#game-stats').on('click', gameEvents.onGameStats)
 })

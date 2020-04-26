@@ -45,9 +45,20 @@ const getAllGames = () => {
   })
 }
 
+const gameStats = () => {
+  return $.ajax({
+    url: config.apiUrl + '/games?over=true',
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   startGame,
   updateGame,
   getGame,
-  getAllGames
+  getAllGames,
+  gameStats
 }

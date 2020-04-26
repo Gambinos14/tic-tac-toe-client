@@ -2,10 +2,8 @@
 
 const api = require('./api.js')
 const ui = require('./ui.js')
-
 const getFormFields = require('../../../lib/get-form-fields.js')
 
-// currentMove
 const currentMove = {
   game: {
     cell: {
@@ -28,6 +26,7 @@ const onClick = event => {
   }
 
   const boxNumber = parseInt($(event.target).data('box-num'))
+
   if (!gameBoard[boxNumber]) {
     gameBoard[boxNumber] = currentMove.game.cell.value
     currentMove.game.cell.index = boxNumber
@@ -43,43 +42,28 @@ const onClick = event => {
 
   ui.placeGamePiece(event.target, currentMove.game.cell.value)
 
-  api.updateGame(currentMove)
-    .then(ui.updateGameComplete)
-    .catch(ui.updateGameFailed)
+  const gameWinner = ui.checkWinner(gameBoard)
 
-
-  if ((gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[2] !== undefined) ||
-    (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[5] !== undefined) ||
-    (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8] && gameBoard[8] !== undefined) ||
-    (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[6] !== undefined) ||
-    (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7] && gameBoard[7] !== undefined) ||
-    (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[8] !== undefined) ||
-    (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[8] !== undefined) ||
-    (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[6] !== undefined)) {
-    const winner = currentMove.game.cell.value
-    ui.announceWinner(winner)
+  if (gameWinner) {
+    currentMove.game.over = true
+    ui.announceWinner(currentMove.game.cell.value)
     gameCounter = 9
-  } else if (gameCounter === 9 && (!((gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[2] !== undefined) ||
-    (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5] && gameBoard[5] !== undefined) ||
-    (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8] && gameBoard[8] !== undefined) ||
-    (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[6] !== undefined) ||
-    (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7] && gameBoard[7] !== undefined) ||
-    (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8] && gameBoard[8] !== undefined) ||
-    (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[8] !== undefined) ||
-    (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6] && gameBoard[6] !== undefined)))) {
+  } else if (gameCounter === 9 && !gameWinner) {
+    currentMove.game.over = true
     ui.onTie()
   }
 
-  // console.log(gameBoard)
-  console.log(currentMove)
-  // console.log(gameCounter)
+  api.updateGame(currentMove)
+    .then(ui.updateGameComplete)
+    .catch(ui.updateGameFailed)
 }
 
-const onRestart = event => {
+const onRestart = () => {
   gameCounter = 0;
   gameBoard = new Array(9)
   currentMove.game.cell.value = null
   currentMove.game.cell.index = null
+  currentMove.game.over = false
   ui.resetBoard()
   api.startGame()
   .then(ui.gameStartSuccess)
@@ -94,15 +78,22 @@ const getGameById = event => {
     .catch(ui.getGameFailed)
 }
 
-const allGames = event => {
+const allGames = () => {
   api.getAllGames()
     .then(ui.allGamesSuccess)
     .catch(ui.allGamesFailed)
+}
+
+const onGameStats = () => {
+  api.gameStats()
+    .then(ui.gameStatsSuccess)
+    .catch(ui.gameStatsFailed)
 }
 
 module.exports = {
   onClick,
   onRestart,
   getGameById,
-  allGames
+  allGames,
+  onGameStats
 }

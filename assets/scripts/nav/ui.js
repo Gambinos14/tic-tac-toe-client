@@ -13,6 +13,11 @@ const displayHome = () => {
   $('#sign-up-message').hide()
   $('#game-message').hide()
   $('#universal-failure').hide()
+  $('#display-stats').hide()
+
+  $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
+  $('#change-pw').trigger('reset')
 }
 
 const displaySignIn = () => {
@@ -28,6 +33,11 @@ const displaySignIn = () => {
   $('#sign-up-message').hide()
   $('#game-message').hide()
   $('#universal-failure').hide()
+  $('#display-stats').hide()
+
+  $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
+  $('#change-pw').trigger('reset')
 }
 
 const displaySignUp = () => {
@@ -43,6 +53,11 @@ const displaySignUp = () => {
   $('#sign-up-message').hide()
   $('#game-message').hide()
   $('#universal-failure').hide()
+  $('#display-stats').hide()
+
+  $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
+  $('#change-pw').trigger('reset')
 }
 
 const displayGame = () => {
@@ -58,9 +73,15 @@ const displayGame = () => {
   $('#sign-up-message').hide()
   $('#game-message').hide()
   $('#universal-failure').hide()
+  $('#display-stats').hide()
 
+  $('#game-id-data').trigger('reset')
   $('#game-id-data').hide()
   $('.game-id-display').hide()
+
+  $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
+  $('#change-pw').trigger('reset')
 }
 
 const displayChangePassword = () => {
@@ -76,6 +97,11 @@ const displayChangePassword = () => {
   $('#sign-up-message').hide()
   $('#game-message').hide()
   $('#universal-failure').hide()
+  $('#display-stats').hide()
+
+  $('#sign-up').trigger('reset')
+  $('#sign-in').trigger('reset')
+  $('#change-pw').trigger('reset')
 }
 
 module.exports = {
