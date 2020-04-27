@@ -34,4 +34,5 @@ $(() => {
   $('#game-id-data').on('submit', gameEvents.getGameById)
   $('#all-games').on('click', gameEvents.allGames)
   $('#game-stats').on('click', gameEvents.onGameStats)
+  $('.logo').on('click', gameEvents.onSelection)
 })

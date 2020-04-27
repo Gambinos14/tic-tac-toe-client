@@ -66,6 +66,7 @@ const displayGame = () => {
   $('.game-view').css('display', 'flex')
   $('.home-view').hide()
   $('.change-password-view').hide()
+  $('.icon-choice').hide()
 
   $('#sign-up-message').hide()
   $('#sign-in-message').hide()
@@ -82,6 +83,15 @@ const displayGame = () => {
   $('#sign-up').trigger('reset')
   $('#sign-in').trigger('reset')
   $('#change-pw').trigger('reset')
+}
+
+const displaySelection = () => {
+  $('.sign-up-view').hide()
+  $('.sign-in-view').hide()
+  $('.game-view').hide()
+  $('.home-view').hide()
+  $('.change-password-view').hide()
+  $('.icon-choice').css('display', 'flex')
 }
 
 const displayChangePassword = () => {
@@ -110,4 +120,5 @@ module.exports = {
   displaySignUp,
   displayGame,
   displayChangePassword,
+  displaySelection
 }

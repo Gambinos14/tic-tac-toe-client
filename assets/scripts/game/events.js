@@ -14,6 +14,7 @@ const currentMove = {
   }
 }
 
+
 let gameCounter = 0
 let gameBoard = new Array(9)
 
@@ -27,9 +28,20 @@ const onClick = event => {
 
   const boxNumber = parseInt($(event.target).data('box-num'))
 
+
+  // Instead of returning the div number, logo images placed on the board would
+  // trigger click events that returned a value of NaN for boxNumber and so the
+  // onClick function would run to the end causing issues with the game logic.
+  if (!boxNumber && boxNumber !== 0) {
+    return
+  }
+
+  console.log(gameBoard)
+
   if (!gameBoard[boxNumber]) {
     gameBoard[boxNumber] = currentMove.game.cell.value
     currentMove.game.cell.index = boxNumber
+    console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
   } else {
     return
   }
@@ -56,6 +68,7 @@ const onClick = event => {
   api.updateGame(currentMove)
     .then(ui.updateGameComplete)
     .catch(ui.updateGameFailed)
+
 }
 
 const onRestart = () => {
@@ -90,10 +103,17 @@ const onGameStats = () => {
     .catch(ui.gameStatsFailed)
 }
 
+const onSelection = event => {
+  onRestart()
+  ui.confirmSelection($(event.target).attr('src'))
+}
+
+
 module.exports = {
   onClick,
   onRestart,
   getGameById,
   allGames,
-  onGameStats
+  onGameStats,
+  onSelection
 }

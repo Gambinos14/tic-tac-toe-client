@@ -1,43 +1,30 @@
 'use strict'
 const store = require('../store.js')
+const nav = require('../nav/ui.js')
+const api = require('./api.js')
+
+let userOne = null;
+let userTwo = null;
+
 
 const announceWinner = winner => {
-  const upperCaseWinner = winner.toUpperCase()
+  let winnerOfGame = null;
+  if (winner === 'x') {
+    winnerOfGame = 'Player 1'
+  } else {
+    winnerOfGame = 'Player 2'
+  }
+
   $('#game-message').removeClass()
   $('#game-message').addClass('bannerMessage')
   $('#game-message').show()
-  $('#game-message').html(`Winner is ${upperCaseWinner}`)
-}
-
-const resetBoard = () => {
-  $('.game-box').html("")
-  $('.game-box').css('background', '#f7faf7')
-  $('#game-message').hide()
-  $('#game-id-data').hide()
-  $('.game-id-display').hide()
-  $('#display-stats').hide()
-}
-
-const placeGamePiece = (position, player) => {
-  $('#display-stats').hide()
-  $('#game-message').hide()
-  $('.game-id-display').hide()
-  $('#game-id-data').hide()
-  const upperCasePlayer = player.toUpperCase()
-  $(position).css('background', 'transparent').html(upperCasePlayer)
-}
-
-const onTie = () => {
-  $('#game-message').removeClass()
-  $('#game-message').addClass('bannerMessage')
-  $('#game-message').show()
-  $('#game-message').html("It's a Tie!")
+  $('#game-message').html(`Winner is ${winnerOfGame}`)
 }
 
 const gameStartSuccess = apiResponse => {
   $('#game-message').removeClass()
   $('#game-message').addClass('success')
-  $('#game-message').text(`Game has begun! The current game ID is: ${apiResponse.game.id}`)
+  $('#game-message').text(`Player One Goes First! The current game ID is: ${apiResponse.game.id}`)
   $('#game-message').show()
   store.game = null
   store.game = apiResponse.game
@@ -50,6 +37,60 @@ const gameStartFailure = apiResponse => {
   $('#game-message').text('Issue with Game Engine!')
   $('#game-message').show()
   console.log('ui.gameStartFailure ran')
+}
+
+const resetBoard = () => {
+  $('.game-box').empty()
+  $('#game-message').hide()
+  $('#game-id-data').hide()
+  $('.game-id-display').hide()
+  $('#display-stats').hide()
+}
+
+const confirmSelection = logo => {
+
+  const logoImages = $('.logo').children()
+  const fcBarcelona = $(logoImages[0]).attr('src')
+  const fcRealMadrid = $(logoImages[1]).attr('src')
+
+  if (logo === fcBarcelona) {
+    userOne = fcBarcelona
+    userTwo = fcRealMadrid
+  } else if (logo === fcRealMadrid) {
+    userOne = fcRealMadrid
+    userTwo = fcBarcelona
+  }
+
+  nav.displayGame()
+  $('#home').css('display', 'list-item')
+  $('#password').css('display', 'list-item')
+  $('#game').css('display', 'list-item')
+}
+
+const placeGamePiece = (position, player) => {
+  $('#display-stats').hide()
+  $('#game-message').hide()
+  $('.game-id-display').hide()
+  $('#game-id-data').hide()
+
+  let imgSrc;
+
+  if (player === 'x') {
+    imgSrc = userOne
+  } else {
+    imgSrc = userTwo
+  }
+
+  console.log(`imgSrc : ${imgSrc}`)
+
+  $(position).html(`<img src="${imgSrc}" alt="Player Logo">`)
+}
+
+const onTie = () => {
+  $('#game-message').removeClass()
+  $('#game-message').addClass('bannerMessage')
+  $('#game-message').show()
+  $('#game-message').html("It's a Tie!")
 }
 
 const updateGameComplete = apiResponse => {
@@ -166,16 +207,16 @@ const gameStatsSuccess = apiResponse => {
   const gamesTied = totalGamesComplete - (winsByX + winsByO)
 
   const stats1 = (`
-    <p class="underline"> Wins by X </p>
-    <p> ${winsByX} </p>
+    <p class="underline"> Wins by Player 1 </p>
+    <p class= "stats-text"> ${winsByX} </p>
     `)
   const stats2 = (`
-    <p class="underline"> Wins by O </p>
-    <p> ${winsByO} </p>
+    <p class="underline"> Wins by Player 2 </p>
+    <p class= "stats-text"> ${winsByO} </p>
     `)
   const stats3 =(`
     <p class="underline"> Games Tied </p>
-    <p> ${gamesTied} </p>
+    <p class= "stats-text"> ${gamesTied} </p>
     `)
 
   $('#game-id-data').hide()
@@ -208,5 +249,6 @@ module.exports = {
   resetBoard,
   gameStatsSuccess,
   gameStatsFailed,
-  checkWinner
+  checkWinner,
+  confirmSelection
 }

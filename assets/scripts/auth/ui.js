@@ -2,8 +2,8 @@
 
 const store = require('../store.js')
 const navUi = require('../nav/ui.js')
-const gameApi = require('../game/api.js')
 const gameUi = require('../game/ui.js')
+
 
 const signUpSuccess = apiResponse => {
   navUi.displaySignIn()
@@ -20,18 +20,14 @@ const signUpFailed = apiResponse => {
 }
 
 const signInSuccess = apiResponse => {
-  navUi.displayGame()
+  navUi.displaySelection()
   $('#nav-btn').hide()
   $('#signIn').hide()
-  $('#password').css('display', 'list-item')
+  $('#home').hide()
   $('#signOut').css('display', 'list-item')
-  $('#game').css('display', 'list-item')
   $('#sign-in').trigger('reset')
 
   store.user = apiResponse.user
-  gameApi.startGame()
-    .then(gameUi.gameStartSuccess)
-    .catch(gameUi.gameStartFailure)
 }
 
 const signInFailed = apiResponse => {
@@ -49,6 +45,7 @@ const signOutSuccess = apiResponse => {
   $('#game').hide()
   $('#signIn').css('display', 'list-item')
   $('#nav-btn').show()
+  $('#home').show()
   store.user = null
   console.log('ui.signOutSuccess ran')
 }
