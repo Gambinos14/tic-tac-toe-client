@@ -339,10 +339,8 @@ img {
       display: flex;
       justify-content: center;
       align-content: center;
-      height: calc(100% / 3);
-      width: calc(100%/ 3);
-      // text-align: center;
-      // line-height: 19vh;
+      min-height: calc(100% / 3);
+      min-width: calc(100%/ 3);
       font-size: 10vh;
       &:nth-child(3n){
         border-right: 0;
@@ -411,11 +409,8 @@ img {
       border-bottom: 2px solid $main-site-color;
       border-right: 2px solid $main-site-color;
       color: $main-site-color;
-      // display: flex;
-      // justify-content: center;
-      // align-content: center;
-      height: calc(100% / 3);
-      width: calc(100%/ 3);
+      min-height: calc(100% / 3);
+      min-width: calc(100%/ 3);
       text-align: center;
       line-height: 20vh;
       font-size: 10vh;
