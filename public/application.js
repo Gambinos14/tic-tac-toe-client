@@ -16847,7 +16847,6 @@ var onClick = function onClick(event) {
   if (!gameBoard[boxNumber]) {
     gameBoard[boxNumber] = currentMove.game.cell.value;
     currentMove.game.cell.index = boxNumber;
-    // console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
   } else {
     return;
   }
@@ -16858,6 +16857,7 @@ var onClick = function onClick(event) {
     return;
   }
 
+  // console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
   ui.placeGamePiece(event.target, currentMove.game.cell.value);
 
   var gameWinner = ui.checkWinner(gameBoard);
@@ -17150,25 +17150,31 @@ var checkWinner = function checkWinner(array) {
   if (array.length !== 9) {
     return null;
   }
-  if (array[0] === array[1] && array[1] === array[2]) {
-    return array[2];
-  } else if (array[3] === array[4] && array[4] === array[5]) {
-    return array[5];
-  } else if (array[6] === array[7] && array[7] === array[8]) {
-    return array[8];
-  } else if (array[0] === array[3] && array[3] === array[6]) {
-    return array[6];
-  } else if (array[1] === array[4] && array[4] === array[7]) {
-    return array[7];
-  } else if (array[2] === array[5] && array[5] === array[8]) {
-    return array[8];
-  } else if (array[0] === array[4] && array[4] === array[8]) {
-    return array[8];
-  } else if (array[2] === array[4] && array[4] === array[6]) {
-    return array[6];
-  } else {
-    return null;
+  if (array[0] === array[1] && array[1] === array[2] && array[2] !== undefined) {
+    return array[0];
   }
+  if (array[3] === array[4] && array[4] === array[5] && array[5] !== undefined) {
+    return array[3];
+  }
+  if (array[6] === array[7] && array[7] === array[8] && array[8] !== undefined) {
+    return array[6];
+  }
+  if (array[0] === array[3] && array[3] === array[6] && array[6] !== undefined) {
+    return array[0];
+  }
+  if (array[1] === array[4] && array[4] === array[7] && array[7] !== undefined) {
+    return array[1];
+  }
+  if (array[2] === array[5] && array[5] === array[8] && array[8] !== undefined) {
+    return array[2];
+  }
+  if (array[0] === array[4] && array[4] === array[8] && array[8] !== undefined) {
+    return array[0];
+  }
+  if (array[2] === array[4] && array[4] === array[6] && array[6] !== undefined) {
+    return array[2];
+  }
+  return null;
 };
 
 var gameStatsSuccess = function gameStatsSuccess(apiResponse) {
