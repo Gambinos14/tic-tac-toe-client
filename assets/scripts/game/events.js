@@ -37,7 +37,6 @@ const onClick = event => {
   if (!gameBoard[boxNumber]) {
     gameBoard[boxNumber] = currentMove.game.cell.value
     currentMove.game.cell.index = boxNumber
-    // console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
   } else {
     return
   }
@@ -48,6 +47,7 @@ const onClick = event => {
     return
   }
 
+  // console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
   ui.placeGamePiece(event.target, currentMove.game.cell.value)
 
   const gameWinner = ui.checkWinner(gameBoard)
