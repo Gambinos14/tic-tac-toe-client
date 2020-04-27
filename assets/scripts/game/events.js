@@ -17,16 +17,12 @@ let gameCounter = 0
 let gameBoard = new Array(9)
 
 const onClick = event => {
+  // console.log('Counter: ', gameCounter)
+
   if (gameCounter % 2 === 0) {
     currentMove.game.cell.value = 'x'
   } else {
     currentMove.game.cell.value = 'o'
-  }
-
-  if (gameCounter < gameBoard.length) {
-    gameCounter++
-  } else {
-    return
   }
 
   const boxNumber = parseInt($(event.target).data('box-num'))
@@ -41,7 +37,13 @@ const onClick = event => {
   if (!gameBoard[boxNumber]) {
     gameBoard[boxNumber] = currentMove.game.cell.value
     currentMove.game.cell.index = boxNumber
-    console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
+    // console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
+  } else {
+    return
+  }
+
+  if (gameCounter < gameBoard.length) {
+    gameCounter++
   } else {
     return
   }

@@ -26,7 +26,7 @@ const gameStartSuccess = apiResponse => {
   $('#game-message').show()
   store.game = null
   store.game = apiResponse.game
-  console.log('ui.gameStartSuccess ran', apiResponse)
+  // console.log('ui.gameStartSuccess ran', apiResponse)
 }
 
 const gameStartFailure = apiResponse => {
@@ -34,7 +34,7 @@ const gameStartFailure = apiResponse => {
   $('#game-message').addClass('failure')
   $('#game-message').text('Issue with Game Engine!')
   $('#game-message').show()
-  console.log('ui.gameStartFailure ran')
+  // console.log('ui.gameStartFailure ran')
 }
 
 const resetBoard = () => {
@@ -89,7 +89,7 @@ const onTie = () => {
 }
 
 const updateGameComplete = apiResponse => {
-  console.log('ui.updateGameComplete ran', apiResponse)
+  // console.log('ui.updateGameComplete ran', apiResponse)
 }
 
 const updateGameFailed = apiResponse => {
@@ -97,7 +97,7 @@ const updateGameFailed = apiResponse => {
   $('#game-message').addClass('failure')
   $('#game-message').text('Issue Sending The Last Move...')
   $('#game-message').show()
-  console.log('ui.updateGameFailed ran', apiResponse)
+  // console.log('ui.updateGameFailed ran', apiResponse)
 }
 
 const getGameSuccess = apiResponse => {
@@ -116,7 +116,7 @@ const getGameSuccess = apiResponse => {
   $('#game-id-data').hide()
   $('.game-id-display').show()
 
-  console.log('getGameSuccess ran', apiResponse)
+  // console.log('getGameSuccess ran', apiResponse)
 }
 
 const getGameFailed = apiResponse => {
@@ -126,7 +126,7 @@ const getGameFailed = apiResponse => {
   $('#game-message').show()
   $('#game-id-data').trigger('reset')
   $('#game-id-data').hide()
-  console.log('getGameFailed ran', apiResponse)
+  // console.log('getGameFailed ran', apiResponse)
 }
 
 const allGamesSuccess = apiResponse => {
@@ -141,7 +141,7 @@ const allGamesSuccess = apiResponse => {
     $('#game-message').text(`YOU'VE PLAYED ${apiResponse.games.length} GAMES`)
   }
   $('#game-message').show()
-  console.log('allGamesSuccess ran', apiResponse)
+  // console.log('allGamesSuccess ran', apiResponse)
 }
 
 const allGamesFailed = apiResponse => {
@@ -151,7 +151,7 @@ const allGamesFailed = apiResponse => {
   $('#game-message').addClass('failure')
   $('#game-message').text('ISSUE GETTING PREVIOUS GAME DATA')
   $('#game-message').show()
-  console.log('allGamesFailed ran', apiResponse)
+  // console.log('allGamesFailed ran', apiResponse)
 }
 
 const checkWinner = array => {
@@ -180,7 +180,7 @@ const checkWinner = array => {
 }
 
 const gameStatsSuccess = apiResponse => {
-  console.log('gameStatsSuccess ran', apiResponse)
+  // console.log('gameStatsSuccess ran', apiResponse)
   let winsByX = 0
   let winsByO = 0
   const totalGamesComplete = apiResponse.games.length
@@ -223,7 +223,7 @@ const gameStatsSuccess = apiResponse => {
 }
 
 const gameStatsFailed = apiResponse => {
-  console.log('gameStatsFailed ran', apiResponse)
+  // console.log('gameStatsFailed ran', apiResponse)
   $('#game-message').removeClass()
   $('#game-message').addClass('failure')
   $('#game-message').text('PROBLEM WITH GAME STATS')
