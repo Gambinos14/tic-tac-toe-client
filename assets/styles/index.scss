@@ -260,8 +260,8 @@ img {
   }
   > .container {
     margin-top: 20px;
-    height: 500px;
-    width: 500px;
+    height: 60vh;
+    width: 60vh;
     > .row > .box {
       border-bottom: 2px solid $main-site-color;
       border-right: 2px solid $main-site-color;
@@ -271,7 +271,7 @@ img {
       align-content: center;
       height: calc(100% / 3);
       width: calc(100%/ 3);
-      font-size: 15vh;
+      font-size: 10vh;
       &:nth-child(3n){
         border-right: 0;
       }
