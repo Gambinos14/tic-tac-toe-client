@@ -4,6 +4,8 @@
 $main-site-color: white;
 $alt-color: #565756;
 $main-font:'B612', sans-serif;
+$main-font-size: 0.75vw;
+$media-font-size: 2vw;
 $view-height: 750px;
 $display-hide: none;
 $display-show: flex;
@@ -31,19 +33,20 @@ img {
   border-bottom: 2px solid $main-site-color;
   > .navigation{
     margin:0;
+    padding: 0;
     display:flex;
-    justify-content: flex-end;
+    justify-content:flex-end;
     align-items:stretch;
-    width:50%;
+    width:50vw;
     list-style:none;
     > li {
-      margin-top:0;
-      width:30%;
+      margin:0;
+      width:calc(100% / 4);
       line-height:45px;
       text-align:left;
       padding:15px;
-      font-size:12px;
-      font-weight: 600;
+      font-size:$main-font-size;
+      font-weight:600;
       border-left:3px solid $main-site-color;
       color: $main-site-color;
       &:hover {
@@ -54,17 +57,26 @@ img {
   }
 }
 
+@media screen and (max-width:1000px) {
+.nav-wrapper > .navigation {
+    width:100vw;
+    > li {
+      font-size:1.75vw;
+    }
+  }
+}
+
 .home-view{
   display:$display-show;
   flex-direction:column;
-  align-items: center;
-  justify-content: center;
+  align-items:center;
+  justify-content:center;
   height: $view-height;
   > button{
-    margin-top: 35px;
-    background-color: white;
-    color: black;
-    font-size: 12px;
+    margin-top:35px;
+    background-color:white;
+    color:black;
+    font-size:$main-font-size;
     font-weight: 600;
     &:hover {
       background-color: $alt-color;
@@ -72,19 +84,37 @@ img {
   }
   > div {
     display:flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 75%;
-    width: 40%;
-    border: 2px solid $main-site-color;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    height:70vh;
+    width:40vw;
+    border:2px solid $main-site-color;
     background-color: rgba(255,255,255,0.5);
     > p {
-      margin-top: 50px;
-      font-size: 150px;
+      margin-top:50px;
+      font-size:10vw;
     }
   }
 }
+
+@media screen and (max-width:700px) {
+  .home-view{
+    justify-content: flex-start;
+    > button{
+      font-size: $media-font-size;
+    }
+    > div{
+      margin-top:150px;
+      height:30vh;
+      width:30vh;
+      > p {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
 
 .icon-choice{
   display: $display-hide;
@@ -111,88 +141,100 @@ img {
 
 .sign-up-view{
   display:$display-hide;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: $view-height;
-  width: 50%;
-  margin: auto;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  height:$view-height;
+  width:50vw;
+  margin:auto;
   > h1 {
+    margin-top:125px;
+    font-size:3vw;
     color: $main-site-color;
-    margin-top: 125px;
-    font-size: 50px;
   }
   > form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     width: 75%;
     > input{
-      width: 100%;
-      margin-top: 50px;
-      text-align: center;
-      border: 2px solid $alt-color;
-      border-radius: 10px;
-      height: 50px;
-      outline: none;
-      background: $alt-color;
-      color: white;
+      width:100%;
+      margin-top:50px;
+      text-align:center;
+      border:2px solid $alt-color;
+      border-radius:10px;
+      height:50px;
+      outline:none;
+      background:$alt-color;
+      color:white;
       &::placeholder{
         color: white;
       }
     }
     > button{
-      width: 20%;
-      margin-top: 50px;
+      margin-top:35px;
       background-color: white;
-      color: black;
-      font-size: 12px;
+      color:black;
+      font-size:$main-font-size;
       font-weight: 600;
       &:hover {
         background-color: $alt-color;
       }
+    }
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .sign-up-view {
+    > h1 {
+      font-size: 7vw;
+    }
+    > form > input {
+      margin-top: 30px;
+    }
+    > form > button {
+      font-size: $media-font-size;
     }
   }
 }
 
 .sign-in-view{
   display:$display-hide;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: $view-height;
-  width: 50%;
-  margin: auto;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  height:$view-height;
+  width:50vw;
+  margin:auto;
   > h1 {
-    margin-top: 125px;
-    font-size: 50px;
+    margin-top:125px;
+    font-size:3vw;
     color: $main-site-color;
   }
   > form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     width: 75%;
     > input{
-      width: 100%;
-      margin-top: 50px;
-      text-align: center;
-      border: 2px solid $alt-color;
-      border-radius: 10px;
-      height: 50px;
-      outline: none;
-      background: $alt-color;
-      color: white;
+      width:100%;
+      margin-top:50px;
+      text-align:center;
+      border:2px solid $alt-color;
+      border-radius:10px;
+      height:50px;
+      outline:none;
+      background:$alt-color;
+      color:white;
       &::placeholder{
         color: white;
       }
     }
     > button{
-      width: 20%;
-      margin-top: 50px;
+      margin-top:35px;
       background-color: white;
-      color: black;
-      font-size: 12px;
+      color:black;
+      font-size:$main-font-size;
       font-weight: 600;
       &:hover {
         background-color: $alt-color;
@@ -201,48 +243,76 @@ img {
   }
 }
 
+@media screen and (max-width:1000px) {
+  .sign-in-view {
+    > h1 {
+      font-size: 7vw;
+    }
+    > form > input {
+      margin-top: 30px;
+    }
+    > form > button {
+      font-size: $media-font-size;
+    }
+  }
+}
+
+
 .change-password-view{
   display:$display-hide;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: $view-height;
-  width: 50%;
-  margin: auto;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  height:$view-height;
+  width:50vw;
+  margin:auto;
   > h1 {
-    margin-top: 125px;
-    font-size: 50px;
+    margin-top:125px;
+    font-size:3vw;
     color: $main-site-color;
   }
   > form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     width: 75%;
     > input{
-      width: 100%;
-      margin-top: 50px;
-      text-align: center;
-      border: 2px solid $alt-color;
-      border-radius: 10px;
-      height: 50px;
-      outline: none;
-      background: $alt-color;
-      color: white;
+      width:100%;
+      margin-top:50px;
+      text-align:center;
+      border:2px solid $alt-color;
+      border-radius:10px;
+      height:50px;
+      outline:none;
+      background:$alt-color;
+      color:white;
       &::placeholder{
         color: white;
       }
     }
     > button{
-      width: 20%;
-      margin-top: 50px;
+      margin-top:35px;
       background-color: white;
-      color: black;
-      font-size: 12px;
+      color:black;
+      font-size:$main-font-size;
       font-weight: 600;
       &:hover {
         background-color: $alt-color;
       }
+    }
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .change-password-view {
+    > h1 {
+      font-size: 5vw;
+    }
+    > form > input {
+      margin-top: 30px;
+    }
+    > form > button {
+      font-size: $media-font-size;
     }
   }
 }
@@ -271,6 +341,8 @@ img {
       align-content: center;
       height: calc(100% / 3);
       width: calc(100%/ 3);
+      // text-align: center;
+      // line-height: 19vh;
       font-size: 10vh;
       &:nth-child(3n){
         border-right: 0;
@@ -286,16 +358,16 @@ img {
     align-items: center;
     margin: 30px 0px;
     width: 50%;
-    > button {
-      width: 20%;
-      height: 100%;
+    > button{
+      height: 5vh;
+      margin-top:35px;
       background-color: white;
-      color: black;
-      font-size: 12px;
+      color:black;
+      font-size:$main-font-size;
       font-weight: 600;
       &:hover {
-      background-color: $alt-color;
-      color: white;
+        background-color: $alt-color;
+        color: white;
       }
     }
   }
@@ -305,29 +377,71 @@ img {
       align-items: center;
       width: 50%;
       margin:35px 0px;
-      > input{
-       width:50%;
-       text-align:center;
-       border: 2px solid $alt-color;
-       border-radius: 10px;
-       height: 50px;
-       outline: none;
-       background: $alt-color;
-       color: white;
-       &::placeholder{
+    > input{
+      width:50%;
+      text-align:center;
+      border: 2px solid $alt-color;
+      border-radius: 10px;
+      height: 50px;
+      outline: none;
+      background: $alt-color;
+      color: white;
+      &::placeholder{
         color: white;
       }
     }
+    > button{
+      height: 5vh;
+      margin-left:10px;
+      background-color: white;
+      color:black;
+      font-size:$main-font-size;
+      font-weight: 600;
+      &:hover {
+        background-color: $alt-color;
+        color: white;
+      }
+    }
+  }
+  > .container {
+    margin-top: 20px;
+    height: 60vh;
+    width: 60vh;
+    > .row > .displayBox {
+      border-bottom: 2px solid $main-site-color;
+      border-right: 2px solid $main-site-color;
+      color: $main-site-color;
+      // display: flex;
+      // justify-content: center;
+      // align-content: center;
+      height: calc(100% / 3);
+      width: calc(100%/ 3);
+      text-align: center;
+      line-height: 20vh;
+      font-size: 10vh;
+      &:nth-child(3n){
+        border-right: 0;
+      }
+      &:nth-last-child(-1n + 3){
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:1000px) {
+  .game-view {
+    > .button-wrapper {
+      width: 75%;
+      > button {
+        font-size: $media-font-size;
+        height: 8vh;
+      }
+    }
+    > #game-id-data {
+      margin: 10px 0px;
       > button{
-        width: 20%;
-        margin-left: 10px;
-        background-color: white;
-        color: black;
-        font-size: 12px;
-        font-weight: 600;
-        &:hover {
-          background-color: $alt-color;
-          color: white;
+        font-size: $media-font-size;
       }
     }
   }
@@ -335,7 +449,6 @@ img {
 
 #password{
   display: $display-hide;
-  font-size: 11px;
 }
 #signOut{
   display: $display-hide;
@@ -371,7 +484,7 @@ img {
 #display-stats {
   display: $display-hide;
   justify-content: space-around;
-  margin: 30px 0px;
+  margin-top: 30px;
   width: 50%;
   > .stats {
     display:flex;
@@ -382,9 +495,17 @@ img {
   }
 }
 
+
+@media screen and (max-width:1000px) {
+  #display-stats {
+    width: 100%;
+  }
+}
+
 .underline {
   color: $main-site-color;
   text-decoration: underline;
+  text-align: center;
   font-weight: 600;
 }
 .stats-text {
