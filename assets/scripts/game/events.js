@@ -2,32 +2,34 @@
 
 const api = require('./api.js')
 const ui = require('./ui.js')
-const getFormFields = require('../../../lib/get-form-fields.js')
 
 const currentMove = {
   game: {
     cell: {
       index: null,
-      value: null,
+      value: null
     },
     over: false
   }
 }
 
-
 let gameCounter = 0
 let gameBoard = new Array(9)
 
 const onClick = event => {
-
   if (gameCounter % 2 === 0) {
     currentMove.game.cell.value = 'x'
   } else {
-    currentMove.game.cell.value = "o"
+    currentMove.game.cell.value = 'o'
+  }
+
+  if (gameCounter < gameBoard.length) {
+    gameCounter++
+  } else {
+    return
   }
 
   const boxNumber = parseInt($(event.target).data('box-num'))
-
 
   // Instead of returning the div number, logo images placed on the board would
   // trigger click events that returned a value of NaN for boxNumber and so the
@@ -36,18 +38,10 @@ const onClick = event => {
     return
   }
 
-  console.log(gameBoard)
-
   if (!gameBoard[boxNumber]) {
     gameBoard[boxNumber] = currentMove.game.cell.value
     currentMove.game.cell.index = boxNumber
     console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
-  } else {
-    return
-  }
-
-  if (gameCounter < gameBoard.length) {
-    gameCounter++
   } else {
     return
   }
@@ -68,19 +62,18 @@ const onClick = event => {
   api.updateGame(currentMove)
     .then(ui.updateGameComplete)
     .catch(ui.updateGameFailed)
-
 }
 
 const onRestart = () => {
-  gameCounter = 0;
+  gameCounter = 0
   gameBoard = new Array(9)
   currentMove.game.cell.value = null
   currentMove.game.cell.index = null
   currentMove.game.over = false
   ui.resetBoard()
   api.startGame()
-  .then(ui.gameStartSuccess)
-  .catch(ui.gameStartFailure)
+    .then(ui.gameStartSuccess)
+    .catch(ui.gameStartFailure)
 }
 
 const getGameById = event => {
@@ -107,7 +100,6 @@ const onSelection = event => {
   onRestart()
   ui.confirmSelection($(event.target).attr('src'))
 }
-
 
 module.exports = {
   onClick,

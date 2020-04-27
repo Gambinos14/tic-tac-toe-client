@@ -1,10 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap');
 
-$main-site-color: white;
+$main-site-color: #fff;
 $alt-color: #565756;
-$main-font:'B612', sans-serif;
-$main-font-size: 0.75vw;
+$main-font: 'B612', sans-serif;
+$main-font-size: .75vw;
 $media-font-size: 2vw;
 $view-height: 100vh;
 $display-hide: none;
@@ -14,44 +14,48 @@ html {
   background: url('public/ucl.jpg') no-repeat center center fixed;
   background-size: cover;
 }
+
 body {
   background-color: transparent;
   font-family: $main-font;
 }
 
 img {
-  width: 100%;
   height: 100%;
+  width: 100%;
   object-fit: contain;
 }
 
-.nav-wrapper{
-  display:flex;
-  justify-content:flex-end;
-  align-items:stretch;
-  height:80px;
+.nav-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  height: 80px;
   border-bottom: 2px solid $main-site-color;
-  > .navigation{
-    margin:0;
+
+  > .navigation {
+    margin: 0;
     padding: 0;
-    display:flex;
-    justify-content:flex-end;
-    align-items:stretch;
-    width:50vw;
-    list-style:none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    width: 50vw;
+    list-style: none;
+
     > li {
-      margin:0;
-      width:calc(100% / 4);
-      line-height:45px;
-      text-align:left;
-      padding:15px;
-      font-size:$main-font-size;
-      font-weight:600;
-      border-left:3px solid $main-site-color;
+      margin: 0;
+      width: calc(100% / 4);
+      line-height: 45px;
+      text-align: left;
+      padding: 15px;
+      font-size: $main-font-size;
+      font-weight: 600;
+      border-left: 3px solid $main-site-color;
       color: $main-site-color;
+
       &:hover {
         background-color: $alt-color;
-        color: white;
+        color: $main-site-color;
       }
     }
   }
@@ -59,55 +63,62 @@ img {
 
 @media screen and (max-width:1000px) {
 .nav-wrapper > .navigation {
-    width:100vw;
+    width: 100vw;
+
     > li {
-      font-size:1.75vw;
+      font-size: 1.75vw;
     }
   }
 }
 
-.home-view{
-  display:$display-show;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+.home-view {
+  display: $display-show;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: $view-height;
-  > button{
-    margin-top:35px;
-    background-color:white;
-    color:black;
-    font-size:$main-font-size;
+
+  > button {
+    margin-top: 35px;
+    background-color: $main-site-color;
+    color: #000;
+    font-size: $main-font-size;
     font-weight: 600;
     &:hover {
       background-color: $alt-color;
     }
   }
+
   > div {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    height:70vh;
-    width:40vw;
-    border:2px solid $main-site-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 70vh;
+    width: 40vw;
+    border: 2px solid $main-site-color;
     background-color: rgba(255,255,255,0.5);
+
     > p {
-      margin-top:50px;
-      font-size:10vw;
+      margin-top: 50px;
+      font-size: 10vw;
     }
   }
 }
 
 @media screen and (max-width:700px) {
-  .home-view{
+  .home-view {
     justify-content: flex-start;
-    > button{
+
+    > button {
       font-size: $media-font-size;
     }
-    > div{
-      margin-top:150px;
-      height:30vh;
-      width:30vh;
+
+    > div {
+      margin-top: 150px;
+      height: 30vh;
+      width: 30vh;
+
       > p {
         margin-top: 20px;
       }
@@ -116,21 +127,24 @@ img {
 }
 
 
-.icon-choice{
+.icon-choice {
   display: $display-hide;
   flex-direction: column;
   align-items: center;
+
   > h1 {
     color: $main-site-color;
     margin: 150px auto 25px auto;
     text-align: center;
   }
+
   > div {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     margin: 0 auto;
     width: 50vw;
+
     > .logo {
       margin: 20px;
       width: calc(100% / 3);
@@ -139,44 +153,49 @@ img {
   }
 }
 
-.sign-up-view{
-  display:$display-hide;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  height:$view-height;
-  width:50vw;
-  margin:auto;
+.sign-up-view {
+  display: $display-hide;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: $view-height;
+  width: 50vw;
+  margin: auto;
+
   > h1 {
-    margin-top:125px;
-    font-size:3vw;
+    margin-top: 125px;
+    font-size: 3vw;
     color: $main-site-color;
   }
-  > form{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+
+  > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 75%;
-    > input{
-      width:100%;
-      margin-top:50px;
-      text-align:center;
-      border:2px solid $alt-color;
-      border-radius:10px;
-      height:50px;
-      outline:none;
-      background:$alt-color;
-      color:white;
-      &::placeholder{
-        color: white;
+
+    > input {
+      width: 100%;
+      margin-top: 50px;
+      text-align: center;
+      border: 2px solid $alt-color;
+      border-radius: 10px;
+      height: 50px;
+      outline: none;
+      background: $alt-color;
+      color: $main-site-color;
+      &::placeholder {
+        color: $main-site-color;
       }
     }
-    > button{
-      margin-top:35px;
-      background-color: white;
-      color:black;
-      font-size:$main-font-size;
+
+    > button {
+      margin-top: 35px;
+      background-color: $main-site-color;
+      color: #000;
+      font-size: $main-font-size;
       font-weight: 600;
+
       &:hover {
         background-color: $alt-color;
       }
@@ -186,56 +205,65 @@ img {
 
 @media screen and (max-width:1000px) {
   .sign-up-view {
+
     > h1 {
       font-size: 7vw;
     }
+
     > form > input {
       margin-top: 30px;
     }
+
     > form > button {
       font-size: $media-font-size;
     }
   }
 }
 
-.sign-in-view{
-  display:$display-hide;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  height:$view-height;
-  width:50vw;
-  margin:auto;
+.sign-in-view {
+  display: $display-hide;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: $view-height;
+  width: 50vw;
+  margin: auto;
+
   > h1 {
-    margin-top:125px;
-    font-size:3vw;
+    margin-top: 125px;
+    font-size: 3vw;
     color: $main-site-color;
   }
+
   > form{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 75%;
+
     > input{
-      width:100%;
-      margin-top:50px;
-      text-align:center;
-      border:2px solid $alt-color;
-      border-radius:10px;
-      height:50px;
-      outline:none;
-      background:$alt-color;
-      color:white;
-      &::placeholder{
-        color: white;
+      width: 100%;
+      margin-top: 50px;
+      text-align: center;
+      border: 2px solid $alt-color;
+      border-radius: 10px;
+      height: 50px;
+      outline: none;
+      background: $alt-color;
+      color: $main-site-color;
+
+      &::placeholder {
+        color: $main-site-color;
       }
     }
-    > button{
-      margin-top:35px;
-      background-color: white;
-      color:black;
-      font-size:$main-font-size;
+
+    > button {
+      margin-top: 35px;
+      background-color: $main-site-color;
+      color: #000;
+      font-size: $main-font-size;
       font-weight: 600;
+
       &:hover {
         background-color: $alt-color;
       }
@@ -245,12 +273,15 @@ img {
 
 @media screen and (max-width:1000px) {
   .sign-in-view {
+
     > h1 {
       font-size: 7vw;
     }
+
     > form > input {
       margin-top: 30px;
     }
+
     > form > button {
       font-size: $media-font-size;
     }
@@ -258,44 +289,50 @@ img {
 }
 
 
-.change-password-view{
-  display:$display-hide;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  height:$view-height;
-  width:50vw;
+.change-password-view {
+  display: $display-hide;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: $view-height;
+  width: 50vw;
   margin:auto;
+
   > h1 {
-    margin-top:125px;
-    font-size:3vw;
+    margin-top: 125px;
+    font-size: 3vw;
     color: $main-site-color;
   }
-  > form{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+
+  > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 75%;
-    > input{
-      width:100%;
-      margin-top:50px;
-      text-align:center;
-      border:2px solid $alt-color;
-      border-radius:10px;
-      height:50px;
-      outline:none;
-      background:$alt-color;
-      color:white;
-      &::placeholder{
-        color: white;
+
+    > input {
+      width: 100%;
+      margin-top: 50px;
+      text-align: center;
+      border: 2px solid $alt-color;
+      border-radius: 10px;
+      height: 50px;
+      outline: none;
+      background: $alt-color;
+      color: $main-site-color;
+
+      &::placeholder {
+        color: $main-site-color;
       }
     }
-    > button{
-      margin-top:35px;
-      background-color: white;
-      color:black;
-      font-size:$main-font-size;
+
+    > button {
+      margin-top: 35px;
+      background-color: $main-site-color;
+      color: #000;
+      font-size: $main-font-size;
       font-weight: 600;
+
       &:hover {
         background-color: $alt-color;
       }
@@ -305,12 +342,15 @@ img {
 
 @media screen and (max-width:1000px) {
   .change-password-view {
+
     > h1 {
       font-size: 5vw;
     }
+
     > form > input {
       margin-top: 30px;
     }
+
     > form > button {
       font-size: $media-font-size;
     }
@@ -323,15 +363,18 @@ img {
   align-items: center;
   justify-content: flex-start;
   height: $view-height;
+
   > h1 {
     margin-top: 50px;
     font-size: 50px;
     color: $main-site-color;
   }
+
   > .container {
     margin-top: 20px;
     height: 60vh;
     width: 60vh;
+
     > .row > .box {
       border-bottom: 2px solid $main-site-color;
       border-right: 2px solid $main-site-color;
@@ -339,13 +382,15 @@ img {
       display: flex;
       justify-content: center;
       align-content: center;
-      min-height: calc(100% / 3);
-      min-width: calc(100%/ 3);
+      height: calc(100% / 3);
+      width: calc(100%/ 3);
       font-size: 10vh;
-      &:nth-child(3n){
+
+      &:nth-child(3n) {
         border-right: 0;
       }
-      &:nth-last-child(-1n + 3){
+
+      &:nth-last-child(-1n + 3) {
         border-bottom: 0;
       }
     }
@@ -356,68 +401,79 @@ img {
     align-items: center;
     margin: 30px 0px;
     width: 50%;
-    > button{
+
+    > button {
       height: 5vh;
-      margin-top:35px;
-      background-color: white;
-      color:black;
-      font-size:$main-font-size;
+      margin-top: 35px;
+      background-color: $main-site-color;
+      color: #000;
+      font-size: $main-font-size;
       font-weight: 600;
+
       &:hover {
         background-color: $alt-color;
-        color: white;
+        color: $main-site-color;
       }
     }
   }
+
   > #game-id-data {
-      display:$display-hide;
+      display: $display-hide;
       justify-content: center;
       align-items: center;
       width: 50%;
-      margin:35px 0px;
-    > input{
-      width:50%;
-      text-align:center;
+      margin: 35px 0px;
+
+    > input {
+      width: 50%;
+      text-align: center;
       border: 2px solid $alt-color;
       border-radius: 10px;
       height: 50px;
       outline: none;
       background: $alt-color;
-      color: white;
-      &::placeholder{
-        color: white;
+      color: $main-site-color;
+
+      &::placeholder {
+        color: $main-site-color;
       }
     }
-    > button{
+
+    > button {
       height: 5vh;
-      margin-left:10px;
-      background-color: white;
-      color:black;
-      font-size:$main-font-size;
+      margin-left: 10px;
+      background-color: $main-site-color;
+      color: #000;
+      font-size: $main-font-size;
       font-weight: 600;
+
       &:hover {
         background-color: $alt-color;
-        color: white;
+        color: $main-site-color;
       }
     }
   }
+
   > .container {
     margin-top: 20px;
     height: 60vh;
     width: 60vh;
+
     > .row > .displayBox {
       border-bottom: 2px solid $main-site-color;
       border-right: 2px solid $main-site-color;
       color: $main-site-color;
-      min-height: calc(100% / 3);
-      min-width: calc(100%/ 3);
+      height: calc(100% / 3);
+      width: calc(100%/ 3);
       text-align: center;
       line-height: 20vh;
       font-size: 10vh;
-      &:nth-child(3n){
+
+      &:nth-child(3n) {
         border-right: 0;
       }
-      &:nth-last-child(-1n + 3){
+
+      &:nth-last-child(-1n + 3) {
         border-bottom: 0;
       }
     }
@@ -426,15 +482,19 @@ img {
 
 @media screen and (max-width:1000px) {
   .game-view {
+
     > .button-wrapper {
       width: 75%;
+
       > button {
         font-size: $media-font-size;
         height: 8vh;
       }
     }
+
     > #game-id-data {
       margin: 10px 0px;
+
       > button{
         font-size: $media-font-size;
       }
@@ -442,31 +502,36 @@ img {
   }
 }
 
-#password{
+#password {
   display: $display-hide;
-}
-#signOut{
-  display: $display-hide;
-}
-#game{
-  display: $display-hide;
-}
-#universal-failure{
-  text-align: center;
-}
-.failure{
-  margin-top: 10px;
-  color: red;
-  background: white;
-}
-.success{
-  margin-top: 10px;
-  color: green;
-  background: white;
 }
 
-.bannerMessage{
-  color: white;
+#signOut {
+  display: $display-hide;
+}
+
+#game {
+  display: $display-hide;
+}
+
+#universal-failure {
+  text-align: center;
+}
+
+.failure {
+  margin-top: 10px;
+  color: red;
+  background: $main-site-color;
+}
+
+.success {
+  margin-top: 10px;
+  color: green;
+  background: $main-site-color;
+}
+
+.bannerMessage {
+  color: $main-site-color;
   font-weight: 600;
   margin-top: 10px;
 }
@@ -476,23 +541,24 @@ img {
   margin-bottom: 30px;
 }
 
-#display-stats {
+.stats-display {
   display: $display-hide;
   justify-content: space-around;
   margin-top: 30px;
   width: 50%;
+
   > .stats {
-    display:flex;
+    display: flex;
     flex-direction: column;
     border: 2px solid $main-site-color;
     width: calc(50% / 3);
-    align-items:center;
+    align-items: center;
   }
 }
 
 
 @media screen and (max-width:1000px) {
-  #display-stats {
+  .stats-display {
     width: 100%;
   }
 }
@@ -503,9 +569,11 @@ img {
   text-align: center;
   font-weight: 600;
 }
+
 .stats-text {
   color: $main-site-color;
 }
+
 .message {
   color: $main-site-color;
 }

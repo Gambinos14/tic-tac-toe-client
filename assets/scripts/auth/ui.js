@@ -2,8 +2,6 @@
 
 const store = require('../store.js')
 const navUi = require('../nav/ui.js')
-const gameUi = require('../game/ui.js')
-
 
 const signUpSuccess = apiResponse => {
   navUi.displaySignIn()
@@ -16,7 +14,7 @@ const signUpFailed = apiResponse => {
   $('#sign-up-message').text('Sign Up Failed. Please Try Again!')
   $('#sign-up-message').show()
   $('#sign-up').trigger('reset')
-  console.log("Issue with Sign Up", apiResponse)
+  console.log('Issue with Sign Up', apiResponse)
 }
 
 const signInSuccess = apiResponse => {
@@ -28,6 +26,7 @@ const signInSuccess = apiResponse => {
   $('#sign-in').trigger('reset')
 
   store.user = apiResponse.user
+  console.log("Current User: ", store.user)
 }
 
 const signInFailed = apiResponse => {
@@ -35,7 +34,7 @@ const signInFailed = apiResponse => {
   $('#sign-in-message').text('Sign In Failed. Please Try Again!')
   $('#sign-in-message').show()
   $('#sign-in').trigger('reset')
-  console.log("Issue with Sign In", apiResponse)
+  console.log('Issue with Sign In', apiResponse)
 }
 
 const signOutSuccess = apiResponse => {
@@ -43,7 +42,7 @@ const signOutSuccess = apiResponse => {
   $('#password').hide()
   $('#signOut').hide()
   $('#game').hide()
-  $('#signIn').css('display', 'list-item')
+  $('#signIn').show()
   $('#nav-btn').show()
   $('#home').show()
   store.user = null
@@ -74,7 +73,6 @@ const changePasswordFailed = apiResponse => {
   $('#change-pw').trigger('reset')
   console.log('ui.changePasswordFailed ran')
 }
-
 
 module.exports = {
   signUpSuccess,

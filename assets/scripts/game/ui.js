@@ -1,14 +1,12 @@
 'use strict'
 const store = require('../store.js')
 const nav = require('../nav/ui.js')
-const api = require('./api.js')
 
-let userOne = null;
-let userTwo = null;
-
+let userOne = null
+let userTwo = null
 
 const announceWinner = winner => {
-  let winnerOfGame = null;
+  let winnerOfGame = null
   if (winner === 'x') {
     winnerOfGame = 'Player 1'
   } else {
@@ -48,7 +46,6 @@ const resetBoard = () => {
 }
 
 const confirmSelection = logo => {
-
   const logoImages = $('.logo').children()
   const fcBarcelona = $(logoImages[0]).attr('src')
   const fcRealMadrid = $(logoImages[1]).attr('src')
@@ -73,15 +70,13 @@ const placeGamePiece = (position, player) => {
   $('.game-id-display').hide()
   $('#game-id-data').hide()
 
-  let imgSrc;
+  let imgSrc = null
 
   if (player === 'x') {
     imgSrc = userOne
   } else {
     imgSrc = userTwo
   }
-
-  console.log(`imgSrc : ${imgSrc}`)
 
   $(position).html(`<img src="${imgSrc}" alt="Player Logo">`)
 }
@@ -207,14 +202,14 @@ const gameStatsSuccess = apiResponse => {
   const gamesTied = totalGamesComplete - (winsByX + winsByO)
 
   const stats1 = (`
-    <p class="underline"> Wins by Player 1 </p>
+    <p class="underline"> Player 1 Wins </p>
     <p class= "stats-text"> ${winsByX} </p>
     `)
   const stats2 = (`
-    <p class="underline"> Wins by Player 2 </p>
+    <p class="underline"> Player 2 Wins </p>
     <p class= "stats-text"> ${winsByO} </p>
     `)
-  const stats3 =(`
+  const stats3 = (`
     <p class="underline"> Games Tied </p>
     <p class= "stats-text"> ${gamesTied} </p>
     `)
