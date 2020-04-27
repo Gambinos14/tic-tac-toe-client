@@ -16827,16 +16827,12 @@ var gameCounter = 0;
 var gameBoard = new Array(9);
 
 var onClick = function onClick(event) {
+  // console.log('Counter: ', gameCounter)
+
   if (gameCounter % 2 === 0) {
     currentMove.game.cell.value = 'x';
   } else {
     currentMove.game.cell.value = 'o';
-  }
-
-  if (gameCounter < gameBoard.length) {
-    gameCounter++;
-  } else {
-    return;
   }
 
   var boxNumber = parseInt($(event.target).data('box-num'));
@@ -16851,7 +16847,13 @@ var onClick = function onClick(event) {
   if (!gameBoard[boxNumber]) {
     gameBoard[boxNumber] = currentMove.game.cell.value;
     currentMove.game.cell.index = boxNumber;
-    console.log('place ' + currentMove.game.cell.value + ' at position: ' + boxNumber);
+    // console.log(`place ${currentMove.game.cell.value} at position: ${boxNumber}`)
+  } else {
+    return;
+  }
+
+  if (gameCounter < gameBoard.length) {
+    gameCounter++;
   } else {
     return;
   }
@@ -17016,7 +17018,7 @@ var gameStartSuccess = function gameStartSuccess(apiResponse) {
   $('#game-message').show();
   store.game = null;
   store.game = apiResponse.game;
-  console.log('ui.gameStartSuccess ran', apiResponse);
+  // console.log('ui.gameStartSuccess ran', apiResponse)
 };
 
 var gameStartFailure = function gameStartFailure(apiResponse) {
@@ -17024,7 +17026,7 @@ var gameStartFailure = function gameStartFailure(apiResponse) {
   $('#game-message').addClass('failure');
   $('#game-message').text('Issue with Game Engine!');
   $('#game-message').show();
-  console.log('ui.gameStartFailure ran');
+  // console.log('ui.gameStartFailure ran')
 };
 
 var resetBoard = function resetBoard() {
@@ -17079,7 +17081,7 @@ var onTie = function onTie() {
 };
 
 var updateGameComplete = function updateGameComplete(apiResponse) {
-  console.log('ui.updateGameComplete ran', apiResponse);
+  // console.log('ui.updateGameComplete ran', apiResponse)
 };
 
 var updateGameFailed = function updateGameFailed(apiResponse) {
@@ -17087,7 +17089,7 @@ var updateGameFailed = function updateGameFailed(apiResponse) {
   $('#game-message').addClass('failure');
   $('#game-message').text('Issue Sending The Last Move...');
   $('#game-message').show();
-  console.log('ui.updateGameFailed ran', apiResponse);
+  // console.log('ui.updateGameFailed ran', apiResponse)
 };
 
 var getGameSuccess = function getGameSuccess(apiResponse) {
@@ -17106,7 +17108,7 @@ var getGameSuccess = function getGameSuccess(apiResponse) {
   $('#game-id-data').hide();
   $('.game-id-display').show();
 
-  console.log('getGameSuccess ran', apiResponse);
+  // console.log('getGameSuccess ran', apiResponse)
 };
 
 var getGameFailed = function getGameFailed(apiResponse) {
@@ -17116,7 +17118,7 @@ var getGameFailed = function getGameFailed(apiResponse) {
   $('#game-message').show();
   $('#game-id-data').trigger('reset');
   $('#game-id-data').hide();
-  console.log('getGameFailed ran', apiResponse);
+  // console.log('getGameFailed ran', apiResponse)
 };
 
 var allGamesSuccess = function allGamesSuccess(apiResponse) {
@@ -17131,7 +17133,7 @@ var allGamesSuccess = function allGamesSuccess(apiResponse) {
     $('#game-message').text('YOU\'VE PLAYED ' + apiResponse.games.length + ' GAMES');
   }
   $('#game-message').show();
-  console.log('allGamesSuccess ran', apiResponse);
+  // console.log('allGamesSuccess ran', apiResponse)
 };
 
 var allGamesFailed = function allGamesFailed(apiResponse) {
@@ -17141,7 +17143,7 @@ var allGamesFailed = function allGamesFailed(apiResponse) {
   $('#game-message').addClass('failure');
   $('#game-message').text('ISSUE GETTING PREVIOUS GAME DATA');
   $('#game-message').show();
-  console.log('allGamesFailed ran', apiResponse);
+  // console.log('allGamesFailed ran', apiResponse)
 };
 
 var checkWinner = function checkWinner(array) {
@@ -17170,7 +17172,7 @@ var checkWinner = function checkWinner(array) {
 };
 
 var gameStatsSuccess = function gameStatsSuccess(apiResponse) {
-  console.log('gameStatsSuccess ran', apiResponse);
+  // console.log('gameStatsSuccess ran', apiResponse)
   var winsByX = 0;
   var winsByO = 0;
   var totalGamesComplete = apiResponse.games.length;
@@ -17204,7 +17206,7 @@ var gameStatsSuccess = function gameStatsSuccess(apiResponse) {
 };
 
 var gameStatsFailed = function gameStatsFailed(apiResponse) {
-  console.log('gameStatsFailed ran', apiResponse);
+  // console.log('gameStatsFailed ran', apiResponse)
   $('#game-message').removeClass();
   $('#game-message').addClass('failure');
   $('#game-message').text('PROBLEM WITH GAME STATS');
@@ -17423,7 +17425,7 @@ var navUi = __webpack_require__(96);
 var signUpSuccess = function signUpSuccess(apiResponse) {
   navUi.displaySignIn();
   $('#sign-up').trigger('reset');
-  console.log(apiResponse);
+  // console.log(apiResponse)
 };
 
 var signUpFailed = function signUpFailed(apiResponse) {
@@ -17431,7 +17433,7 @@ var signUpFailed = function signUpFailed(apiResponse) {
   $('#sign-up-message').text('Sign Up Failed. Please Try Again!');
   $('#sign-up-message').show();
   $('#sign-up').trigger('reset');
-  console.log('Issue with Sign Up', apiResponse);
+  // console.log('Issue with Sign Up', apiResponse)
 };
 
 var signInSuccess = function signInSuccess(apiResponse) {
@@ -17443,7 +17445,7 @@ var signInSuccess = function signInSuccess(apiResponse) {
   $('#sign-in').trigger('reset');
 
   store.user = apiResponse.user;
-  console.log("Current User: ", store.user);
+  // console.log("Current User: ", store.user)
 };
 
 var signInFailed = function signInFailed(apiResponse) {
@@ -17451,7 +17453,7 @@ var signInFailed = function signInFailed(apiResponse) {
   $('#sign-in-message').text('Sign In Failed. Please Try Again!');
   $('#sign-in-message').show();
   $('#sign-in').trigger('reset');
-  console.log('Issue with Sign In', apiResponse);
+  // console.log('Issue with Sign In', apiResponse)
 };
 
 var signOutSuccess = function signOutSuccess(apiResponse) {
@@ -17463,14 +17465,14 @@ var signOutSuccess = function signOutSuccess(apiResponse) {
   $('#nav-btn').show();
   $('#home').show();
   store.user = null;
-  console.log('ui.signOutSuccess ran');
+  // console.log('ui.signOutSuccess ran')
 };
 
 var signOutFailed = function signOutFailed(apiResponse) {
   $('#universal-failure').show();
   $('#universal-failure').addClass('failure');
   $('#universal-failure').text('Please Try Again....');
-  console.log('ui.singOutFailed ran');
+  // console.log('ui.singOutFailed ran')
 };
 
 var changePasswordSuccess = function changePasswordSuccess(apiResponse) {
@@ -17479,7 +17481,7 @@ var changePasswordSuccess = function changePasswordSuccess(apiResponse) {
   $('#change-password-message').text('Password Successfully Changed!');
   $('#change-password-message').show();
   $('#change-pw').trigger('reset');
-  console.log('ui.changePasswordSuccess ran');
+  // console.log('ui.changePasswordSuccess ran')
 };
 
 var changePasswordFailed = function changePasswordFailed(apiResponse) {
@@ -17488,7 +17490,7 @@ var changePasswordFailed = function changePasswordFailed(apiResponse) {
   $('#change-password-message').text('Please Try Again...');
   $('#change-password-message').show();
   $('#change-pw').trigger('reset');
-  console.log('ui.changePasswordFailed ran');
+  // console.log('ui.changePasswordFailed ran')
 };
 
 module.exports = {
