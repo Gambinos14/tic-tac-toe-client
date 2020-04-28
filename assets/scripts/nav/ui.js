@@ -6,6 +6,7 @@ const displayHome = () => {
   $('.game-view').hide()
   $('.home-view').show()
   $('.change-password-view').hide()
+  $('.icon-choice').hide()
 
   $('#sign-up-message').hide()
   $('#sign-in-message').hide()
