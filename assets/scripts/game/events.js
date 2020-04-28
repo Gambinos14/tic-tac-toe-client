@@ -56,6 +56,7 @@ const onClick = event => {
     currentMove.game.over = true
     ui.announceWinner(currentMove.game.cell.value)
     gameCounter = 9
+    $('#gol')[0].play()
   } else if (gameCounter === 9 && !gameWinner) {
     currentMove.game.over = true
     ui.onTie()
@@ -72,6 +73,8 @@ const onRestart = () => {
   currentMove.game.cell.value = null
   currentMove.game.cell.index = null
   currentMove.game.over = false
+  $('#gol')[0].pause()
+  $('#gol')[0].currentTime = 0
   ui.resetBoard()
   api.startGame()
     .then(ui.gameStartSuccess)
