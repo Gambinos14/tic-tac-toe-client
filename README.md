@@ -61,7 +61,7 @@ HTML5, CSS, SASS, Bootstrap, JavaScript, jQuery, AJAX
 
 * Responsive design for larger screens and smaller mobile phones
 * Larger selection of teams for users to pick player 1 and player 2 icons
-* Add an option to view all game ID's played in order to retrieve previous games
+* Add an option to view all game IDs played in order to retrieve previous games
 * Add sound effect on win
 
 This is the [Wireframe Link](https://media.git.generalassemb.ly/user/27494/files/07cc6880-8478-11ea-9725-93e2c6dd2d76)
