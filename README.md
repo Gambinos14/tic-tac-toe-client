@@ -59,17 +59,17 @@ HTML5, CSS, SASS, Bootstrap, JavaScript, jQuery, AJAX
 
 ### Future Upgrades:
 
-*Responsive design for larger screens and smaller mobile phones
-*Larger selection of teams for users to pick player 1 and player 2 icons
-*Add an option to view all game ID's played in order to retrieve previous games
-*Add sound effect on win
+* Responsive design for larger screens and smaller mobile phones
+* Larger selection of teams for users to pick player 1 and player 2 icons
+* Add an option to view all game ID's played in order to retrieve previous games
+* Add sound effect on win
 
 This is the [Wireframe Link](https://media.git.generalassemb.ly/user/27494/files/07cc6880-8478-11ea-9725-93e2c6dd2d76)
 
 ### User Stories:
 
-*As a user I want to be able to play the game without any glitches or user facing bugs.
-*As a user I want the game to end when someone wins and a winner displayed.
-*As a user I want the site to know who's turn it is so there isn't any confusion between x's and o's.
-*As a user I also want to be able to play the game correctly, such that the same move can't be made twice in one game.
-*As a user I want to be able to restart a game whenever I like in case I messed up a move.
+* As a user I want to be able to play the game without any glitches or user facing bugs.
+* As a user I want the game to end when someone wins and a winner displayed.
+* As a user I want the site to know who's turn it is so there isn't any confusion between x's and o's.
+* As a user I also want to be able to play the game correctly, such that the same move can't be made twice in one game.
+* As a user I want to be able to restart a game whenever I like in case I messed up a move.
