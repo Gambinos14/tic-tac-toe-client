@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+
+      <nav class="nav-wrapper">
+        <ul class="navigation">
+          <li id="home">HOME</li>
+          <li id="signIn">SIGN IN</li>
+          <li id="game">GAME</li>
+          <li id="password">CHANGE PASSWORD</li>
+          <li id="signOut">SIGN OUT</li>
+        </ul>
+      </nav>
+
+      <div id="universal-failure"></div>
+
+      <section class="home-view">
+        <div>
+          <p>Tic Tac Toe</p>
+        </div>
+        <button type="button" id="nav-btn" class="btn btn-secondary btn-lg">SIGN UP</button>
+      </section>
+
+      <section class="sign-up-view">
+        <h1>Sign Up</h1>
+        <form id="sign-up">
+          <input required name="credentials[email]" placeholder="User Email" type="text">
+          <input required name="credentials[password]" placeholder="Password" type="password">
+          <input required name="credentials[password_confirmation]" placeholder="Confirm Password" type="password">
+          <button type="submit" class="btn btn-secondary btn-lg">SIGN UP</button>
+        </form>
+        <div id="sign-up-message"></div>
+      </section>
+
+      <section class="sign-in-view">
+        <h1>Sign In</h1>
+        <form id="sign-in">
+          <input required name="credentials[email]" placeholder="User Email" type="text">
+          <input required name="credentials[password]" placeholder="Password" type="password">
+          <button type="submit" class="btn btn-secondary btn-lg">SIGN IN</button>
+        </form>
+        <div id="sign-in-message"></div>
+      </section>
+
+      <section class="change-password-view">
+        <h1>Change Password</h1>
+        <form id="change-pw">
+          <input required name="passwords[old]" placeholder="Old Password" type="password">
+          <input required name="passwords[new]" placeholder="New Password" type="password">
+          <button type="submit" class="btn btn-secondary btn-lg">CHANGE</button>
+        </form>
+        <div id="change-password-message"></div>
+      </section>
+
+      <section class="icon-choice">
+          <h1>Player 1 Game Piece</h1>
+          <div class="content-wrapper">
+            <div class="logo"><img src="public/Barcelona.png" alt="Barcelona FC Logo"></div>
+            <div class="logo"><img src="public/RealMadrid.png" alt="Real Madrid FC Logo"></div>
+          </div>
+      </section>
+
+      <section class="game-view">
+            <h1>LET'S PLAY</h1>
+
+            <div id="game-message" class="message"></div>
+
+            <div class="container">
+              <div class="row board h-100">
+
+                <div data-box-num="0" class="col-4 box game-box"></div>
+                <div data-box-num="1" class="col-4 box game-box"></div>
+                <div data-box-num="2" class="col-4 box game-box"></div>
+
+                <div data-box-num="3" class="col-4 box game-box"></div>
+                <div data-box-num="4" class="col-4 box game-box"></div>
+                <div data-box-num="5" class="col-4 box game-box"></div>
+
+                <div data-box-num="6" class="col-4 box game-box"></div>
+                <div data-box-num="7" class="col-4 box game-box"></div>
+                <div data-box-num="8" class="col-4 box game-box"></div>
+
+              </div>
+            </div>
+
+            <div id="display-stats" class="stats-display">
+              <div class="stats-wrapper1 stats"></div>
+              <div class="stats-wrapper2 stats" ></div>
+              <div class="stats-wrapper3 stats"></div>
+            </div>
+
+            <div class="button-wrapper">
+              <button type="button" id="restart" class="btn btn-secondary btn-lg">RESTART GAME</button>
+              <button type="button" id="game-by-id" class="btn btn-secondary btn-lg">GET GAME BY ID</button>
+              <button type="button" id="all-games" class="btn btn-secondary btn-lg"># OF GAMES PLAYED</button>
+              <button type="button" id="game-stats" class="btn btn-secondary btn-lg">GAME STATS</button>
+            </div>
+
+            <form id="game-id-data">
+              <input required id="game-id" placeholder="Game ID #" type="text">
+              <button type="submit" class="btn btn-secondary btn-lg">GET GAME</button>
+            </form>
+
+            <div class="container game-id-display">
+              <div class="row h-100 apiReturnBoard">
+
+                <div class="col-4 displayBox"></div>
+                <div class="col-4 displayBox"></div>
+                <div class="col-4 displayBox"></div>
+
+                <div class="col-4 displayBox"></div>
+                <div class="col-4 displayBox"></div>
+                <div class="col-4 displayBox"></div>
+
+                <div class="col-4 displayBox"></div>
+                <div class="col-4 displayBox"></div>
+                <div class="col-4 displayBox"></div>
+
+              </div>
+            </div>
+
+      </section>
+      <audio id="gol" type="audio/mp3" src="public/goal.mp3"></audio>
+    </body>
+</html>
