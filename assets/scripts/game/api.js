@@ -16,7 +16,7 @@ const startGame = () => {
 
 const updateGame = data => {
   return $.ajax({
-    url: config.apiUrl + `/games/${store.game.id}`,
+    url: config.apiUrl + `/games/${store.game._id}`,
     method: 'PATCH',
     headers: {
       Authorization: `Token token=${store.user.token}`

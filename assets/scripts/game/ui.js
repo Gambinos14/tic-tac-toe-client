@@ -22,7 +22,7 @@ const announceWinner = winner => {
 const gameStartSuccess = apiResponse => {
   $('#game-message').removeClass()
   $('#game-message').addClass('success')
-  $('#game-message').text(`Player One Goes First! The current game ID is: ${apiResponse.game.id}`)
+  $('#game-message').text(`Player One Goes First! The current game ID is: ${apiResponse.game._id}`)
   $('#game-message').show()
   store.game = null
   store.game = apiResponse.game
