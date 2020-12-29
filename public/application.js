@@ -4013,8 +4013,8 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 
 var apiUrl = void 0;
 var apiUrls = {
-  production: 'https://tic-tac-toe-wdi-production.herokuapp.com',
-  development: 'https://tic-tac-toe-wdi.herokuapp.com'
+  production: 'https://tic-tac-toe-api-production.herokuapp.com',
+  development: 'https://tic-tac-toe-api-development.herokuapp.com'
 };
 
 if (window.location.hostname === 'localhost') {
@@ -16940,7 +16940,7 @@ var startGame = function startGame() {
 
 var updateGame = function updateGame(data) {
   return $.ajax({
-    url: config.apiUrl + ('/games/' + store.game.id),
+    url: config.apiUrl + ('/games/' + store.game._id),
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -17018,7 +17018,7 @@ var announceWinner = function announceWinner(winner) {
 var gameStartSuccess = function gameStartSuccess(apiResponse) {
   $('#game-message').removeClass();
   $('#game-message').addClass('success');
-  $('#game-message').text('Player One Goes First! The current game ID is: ' + apiResponse.game.id);
+  $('#game-message').text('Player One Goes First! The current game ID is: ' + apiResponse.game._id);
   $('#game-message').show();
   store.game = null;
   store.game = apiResponse.game;
